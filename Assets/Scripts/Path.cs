@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Targetter : MonoBehaviour {
+public class Path : MonoBehaviour {
+
+	public List<Transform> waypoints = new List<Transform>();
 
 
 	// Use this for initialization
@@ -12,9 +15,5 @@ public class Targetter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-	}
-
-	void OnTriggerEnter(Collider other) {
-		//Destroy(other.gameObject);
 	}
 }
