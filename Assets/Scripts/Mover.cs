@@ -19,8 +19,8 @@ public class Mover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		CurrentPath = GameObject.Find ("Path1");
-		waypoints = CurrentPath.GetComponent<Path>().waypoints;
+		CurrentPath = GameObject.Find ("PathMaker");
+		waypoints = CurrentPath.GetComponent<InitPaths>().waypoints;
 		CurrentWaypoint = waypoints[0];
 		CurrentIndex = 0;
 	}
@@ -37,10 +37,7 @@ public class Mover : MonoBehaviour {
 				if (Vector3.Distance (CurrentWaypoint.transform.position, transform.position) < MinDistance) {
 						++CurrentIndex;
 						if (CurrentIndex > waypoints.Count - 1) {
-							CurrentPath = GameObject.Find ("Path2");
-							waypoints = CurrentPath.GetComponent<Path>().waypoints;
-							CurrentWaypoint = waypoints[0];
-							CurrentIndex = 0;
+							Destroy(gameObject);
 						}
 						CurrentWaypoint = waypoints [CurrentIndex];
 
