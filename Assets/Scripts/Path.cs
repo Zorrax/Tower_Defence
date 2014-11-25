@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Path {
 
-	public List<Transform> Points = new List<Transform>();
+	public List<Vector3> Points = new List<Vector3>();
 
 	public int Index;
 	public int ConnectedTo;

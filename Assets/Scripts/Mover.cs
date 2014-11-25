@@ -8,10 +8,10 @@ public class Mover : MonoBehaviour {
 	private Vector3 MoveVector;
 	public float MoveSpeed;
 	public float MinDistance;
-	public List<Transform> waypoints = new List<Transform>();
+	public List<Vector3> waypoints = new List<Vector3>();
 	private List<Path> Paths = new List<Path>();
 
-	private Transform CurrentWaypoint;
+	private Vector3 CurrentWaypoint;
 	private int CurrentIndex;
 
 	private GameObject CurrentPath;
@@ -22,7 +22,7 @@ public class Mover : MonoBehaviour {
 	void Start () {
 		CurrentPath = GameObject.Find ("PathMaker");
 		Paths = CurrentPath.GetComponent<InitPaths>().Paths; // reference
-		int[] mobpaths = {0,1};
+		int[] mobpaths = {0};
 		foreach ( int y in mobpaths ){
 			for (int i =0; i < Paths[y].Points.Count ; i++){
 				waypoints.Add(Paths[y].Points[i]);
@@ -36,13 +36,13 @@ public class Mover : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-				Direction  = CurrentWaypoint.transform.position - transform.position;
+				Direction  = CurrentWaypoint - transform.position;
 				MoveVector = Direction.normalized * MoveSpeed * Time.deltaTime;
 				transform.position += MoveVector;
 				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (Direction), 4 * Time.deltaTime);
 
 		
-				if (Vector3.Distance (CurrentWaypoint.transform.position, transform.position) < MinDistance) {
+				if (Vector3.Distance (CurrentWaypoint, transform.position) < MinDistance) {
 						++CurrentIndex;
 						if (CurrentIndex > waypoints.Count - 1) {
 							Destroy(gameObject);
