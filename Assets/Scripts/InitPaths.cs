@@ -18,21 +18,35 @@ public class InitPaths : MonoBehaviour {
 		float x = StartPos.position.x;
 		float y = 0.5f;
 		float z = StartPos.position.z;
+		float angle;
 		Vector3 pos =new Vector3(x, y, z);
-
+		Vector3 direction;
+		Vector3 endpos;
+		float a;
+		float deltax;
 
 
 		int pathnumber = 0;
 		Paths.Add(new Path());
 		Paths [pathnumber].Index = pathnumber;
 		Paths[pathnumber].Points.Add(pos);
+		angle =Random.Range(135,315);
+		direction = new Vector3(Mathf.Cos(Mathf.Deg2Rad*angle),0 , Mathf.Sin(Mathf.Deg2Rad*angle));
+		endpos =Paths[pathnumber].Points[0] + direction * Random.Range (10, 15);
 
+		a = (Paths [pathnumber].Points [0].z - endpos.z) / Mathf.Pow ((Paths [pathnumber].Points [0].x - endpos.x), 2);
+		deltax=(endpos.x-Paths[pathnumber].Points[0].x)/20;
+		Debug.Log (a);
+		Debug.Log (endpos.x);
+		Debug.Log (endpos.z);
+		for (int i = 1; i<20; i++) {
 
-		for (int i = 0; i<25; i++) {
-			Vector3 direction = new Vector3 (-0.1f*i-Mathf.Pow(i,0.8f),0f,-8.5f);
-			pos=pos+0.05f*direction;
-			Paths[pathnumber].Points.Add(pos);
+			//direction = direction + new Vector3 (-Mathf.Pow(i,0.8f),0f,0f);
+			//pos=pos+direction;
+		
+			Paths[pathnumber].Points.Add(  new Vector3(pos.x+deltax*i,0.5f,a*(Mathf.Pow((pos.x+deltax*i-endpos.x),2))+endpos.z));
 		}
+		Paths [pathnumber].Points.Add (endpos);
 
 		/*pathnumber++;
 		Paths.Add(new Path());
