@@ -9,7 +9,7 @@ public class Mover : MonoBehaviour {
 	public float MoveSpeed;
 	public float MinDistance;
 	public List<Transform> waypoints = new List<Transform>();
-	private List<List<Transform>> paths = new List<List<Transform>>();
+	private List<Path> Paths = new List<Path>();
 
 	private Transform CurrentWaypoint;
 	private int CurrentIndex;
@@ -21,8 +21,14 @@ public class Mover : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		CurrentPath = GameObject.Find ("PathMaker");
-		paths = CurrentPath.GetComponent<InitPaths>().paths; // reference
-		waypoints = paths[0];
+		Paths = CurrentPath.GetComponent<InitPaths>().Paths; // reference
+		int[] mobpaths = {0,1};
+		foreach ( int y in mobpaths ){
+			for (int i =0; i < Paths[y].Points.Count ; i++){
+				waypoints.Add(Paths[y].Points[i]);
+			}
+		}
+
 		CurrentWaypoint = waypoints[0];
 		CurrentIndex = 0;
 	}
@@ -39,8 +45,8 @@ public class Mover : MonoBehaviour {
 				if (Vector3.Distance (CurrentWaypoint.transform.position, transform.position) < MinDistance) {
 						++CurrentIndex;
 						if (CurrentIndex > waypoints.Count - 1) {
-							waypoints = paths[1]; // skifter ikke path
-							CurrentIndex = 0;
+							Destroy(gameObject);
+							return;
 						}
 						CurrentWaypoint = waypoints [CurrentIndex];
 

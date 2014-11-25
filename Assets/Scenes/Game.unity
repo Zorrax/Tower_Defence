@@ -254,7 +254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 100000, guid: 3a7502a201e7df247b0b70c7367f6d44, type: 2}
-  waypoints: []
 --- !u!4 &572076971
 Transform:
   m_ObjectHideFlags: 0
@@ -346,7 +345,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1207233143}
   m_LocalRotation: {x: .382683486, y: 0, z: 0, w: .923879564}
-  m_LocalPosition: {x: 0, y: 13, z: -15}
+  m_LocalPosition: {x: 0, y: 13, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -382,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ceae25298d6434cb92d8cf48eefab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
+  MoveSpeed: 5
   MinDistance: .5
   waypoints: []
 --- !u!23 &1393334304
