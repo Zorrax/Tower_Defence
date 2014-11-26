@@ -238,7 +238,7 @@ GameObject:
   - 136: {fileID: 460188831}
   - 23: {fileID: 460188830}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: EndPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -512,7 +512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1393334303
 MonoBehaviour:
   m_ObjectHideFlags: 0
