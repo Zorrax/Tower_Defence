@@ -31,9 +31,9 @@ public class InitPaths : MonoBehaviour {
 			Paths.Add (new Path ());
 			Paths [pathnumber].Index = pathnumber;
 			pos = endpos; // udgangspunkt
-			angle =250;// Random.Range(180,270); //(135, 315);
+			angle =Random.Range(180,270); //(135, 315);
 			direction = new Vector3 (Mathf.Cos (Mathf.Deg2Rad * angle), 0, Mathf.Sin (Mathf.Deg2Rad * angle));
-			endpos = pos + direction *5; //Random.Range (5, 10);
+			endpos = pos + direction *Random.Range (5, 10);
 			randnumb=Random.value;
 			if(randnumb>0.5f){
 				Paths [pathnumber].Points = parabola (pos, endpos);
@@ -71,7 +71,7 @@ public class InitPaths : MonoBehaviour {
 		deltaz=(endpos.z-pos.z)/20;
 		List<Vector3> points = new List<Vector3> ();
 		for (var i = 0; i<20; i++) {
-			points.Add(new Vector3(pos.x+deltax*i+Mathf.Cos(Mathf.Deg2Rad*i*40),0.5f,pos.z-deltaz*i));
+			points.Add(new Vector3(pos.x+deltax*i+Mathf.Sin(i*0.25f),0.5f,pos.z+deltaz*i));
 		}
 		return points;
 	}
