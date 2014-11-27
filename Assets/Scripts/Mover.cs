@@ -22,9 +22,9 @@ public class Mover : MonoBehaviour {
 	void Start () {
 		CurrentPath = GameObject.Find ("PathMaker");
 		Paths = CurrentPath.GetComponent<InitPaths>().Paths; // reference
-		int[] mobpaths = {0,1,2,3};
+		int[] mobpaths = {0,1};
 		foreach ( int y in mobpaths ){
-			for (int i =0; i < Paths[y].Points.Count ; i++){
+			for (int i =0; i < Paths[y].Points.Count-1 ; i++){
 				waypoints.Add(Paths[y].Points[i]);
 			}
 		}

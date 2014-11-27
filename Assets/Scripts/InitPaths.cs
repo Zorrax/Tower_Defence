@@ -17,10 +17,96 @@ public class InitPaths : MonoBehaviour {
 	// Use this for initialization
 	void Start () { // 3 forskellige start paths
 		Random.seed = Seed;
-		float x = StartPos.position.x;
-		float y = 0.5f;
-		float z = StartPos.position.z;
-		float angle;
+		Vector3 pos =new Vector3(StartPos.position.x, 0.5f, StartPos.position.z);
+		List<Vector3> template = new List<Vector3> ();
+		float d = 0.1f;
+		/*
+		------------------------
+		-dx-dz	|-dx	|-dx+dz
+		------------------------
+		-dz		|player	|
+		------------------------
+		+dx-dz	|		|
+		------------------------
+
+		*/
+	
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, 0));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, 0));
+		template.Add (new Vector3 (-d, 0, 0));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (-d, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+		template.Add (new Vector3 (0, 0, -d));
+
+
+
+		int pathnumber = 0;
+		Paths.Add (new Path ());
+		Paths [pathnumber].Index = pathnumber;
+		for (int point=0; point<template.Count-1; point++) {
+			pos=pos+template[point];
+			Paths [pathnumber].Points.Add(pos);
+			Instantiate(cube,pos,Quaternion.identity);
+		}
+		pathnumber++;
+		Paths.Add (new Path ());
+		Paths [pathnumber].Index = pathnumber;
+		for (int point=0; point<template.Count-1; point++) {
+			pos=pos+template[point];
+			Paths [pathnumber].Points.Add(pos);
+			Instantiate(cube,pos,Quaternion.identity);
+		}
+
+
+		/*float angle;
 		Vector3 pos =new Vector3(x, y, z);
 		Vector3 direction;
 		float randnumb;
@@ -28,16 +114,16 @@ public class InitPaths : MonoBehaviour {
 		for (int pathnumber=0; pathnumber<4; pathnumber++) {
 			Paths.Add (new Path ());
 			Paths [pathnumber].Index = pathnumber;
-			angle =Random.Range(180,270); //(135, 315);
+			angle =220; //Random.Range(180,270); //(135, 315);
 			direction = new Vector3 (Mathf.Cos (Mathf.Deg2Rad * angle), 0, Mathf.Sin (Mathf.Deg2Rad * angle));
 			randnumb=Random.value;
 			if(randnumb>0.5f){
-				Paths [pathnumber].Points = parabola (pos, angle, direction);
+				Paths [pathnumber].Points = parabola (pos, direction);
 			}else{
-				Paths [pathnumber].Points = sine (pos, angle, direction);
+				Paths [pathnumber].Points = sine (pos, direction);
 			}
 			pos=Paths[pathnumber].Points[Paths[pathnumber].Points.Count-1]; // hvor næste path skal starte fra
-		}
+		}*/
 
 	}
 		// sin function
@@ -48,9 +134,9 @@ public class InitPaths : MonoBehaviour {
 	void Update () {
 	
 	}
+	/*
 
-
-	List<Vector3> parabola(Vector3 pos, float angle, Vector3 direction){
+	List<Vector3> parabola(Vector3 pos, Vector3 direction){
 		float deltax, a;
 		Vector3 endpos;
 		endpos = pos + direction *Random.Range (5, 10);
@@ -62,10 +148,28 @@ public class InitPaths : MonoBehaviour {
 			Instantiate(cube,points[i],Quaternion.identity);
 		}
 		return points;
-	}
+	}*/
 
+	/*List<Vector3> sine(Vector3 pos, Vector3 direction){
+		float deltax, deltaz;
+		Vector3 endpos;
+		float Y, phi, frequency=0.2f;
+		endpos = pos + direction *Random.Range (5, 10);
+		Y = (Mathf.Sqrt (Mathf.Pow (pos.z, 2) + Mathf.Pow (endpos.z, 2) - 2f * pos.z * endpos.z * Mathf.Cos (frequency * (endpos.x - pos.x)))) / (Mathf.Sin (frequency * (endpos.x - pos.x)));
+		phi=2*Mathf.PI-Mathf.Atan((endpos.z*Mathf.Sin(frequency*pos.x)-pos.z*Mathf.Sin(frequency*endpos.x))/(endpos.z*Mathf.Cos(frequency*pos.x)-pos.z*Mathf.Cos(frequency*endpos.x)));
+		deltax=(endpos.x-pos.x)/20;
+		deltaz=(endpos.z-pos.z)/20;
+		List<Vector3> points = new List<Vector3> ();
+		for (var i = 0; i<20; i++) {
+			points.Add(new Vector3(pos.x+deltax*i,0.5f,pos.z+Y*Mathf.Sin(frequency*(deltax*i)*phi)));
+			Instantiate(cube,points[i],Quaternion.identity);
+		}
+		return points;
+	}*/
 
-	List<Vector3> sine(Vector3 pos, float angle, Vector3 direction){
+	/*
+
+	List<Vector3> sine(Vector3 pos, Vector3 direction){
 		float deltax, deltaz;
 		float distance = 2;
 		deltax=distance/16;
@@ -77,7 +181,7 @@ public class InitPaths : MonoBehaviour {
 			Instantiate(cube,points[i],Quaternion.identity);
 		}
 		return points;
-	}
+	}*/
 
 
 }
