@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Path {
-
-	public List<Vector3> Points = new List<Vector3>();
+public class Junction  {
+	public Vector3 Point;
 	public List<int> ConnectedTo = new List<int>();
-	
+
 }
