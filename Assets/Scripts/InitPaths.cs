@@ -6,14 +6,10 @@ public class InitPaths : MonoBehaviour {
 	public GameObject cube;
 	public List<Path> Paths = new List<Path>();
 	public Transform StartPos;
-	public Transform EndPos;
 	public int Seed;
 
 	private GameObject placeholder;
-
-
-
-
+	
 	// Use this for initialization
 	void Start () { // 3 forskellige start paths
 		Random.seed = Seed;
@@ -22,46 +18,53 @@ public class InitPaths : MonoBehaviour {
 		// first points
 		List<JunctionTier> junctiontier = new List<JunctionTier> ();
 
+		int jtier = 0;
 		int jindex = 0;
 		junctiontier.Add (new JunctionTier ());
-		junctiontier[jindex].Junction.Add(new Junction());
-		junctiontier[jindex].Junction[0].Point = pos;
+		junctiontier[jtier].Junction.Add(new Junction());
+		junctiontier[jtier].Junction[0].Point = pos;
 
 		junctiontier.Add (new JunctionTier());
-		jindex++;
+		jtier++;
+
 		for (int numJunc=0; numJunc<4; numJunc++) {
-			junctiontier[jindex].Junction.Add(new Junction());
 		 	angle =Random.Range(180,270); //(135, 315);
 			direction = new Vector3 (Mathf.Cos (Mathf.Deg2Rad * angle), 0, Mathf.Sin (Mathf.Deg2Rad * angle));
 			point=pos+direction*Random.Range(5,7);
 			bool canbeplaced=true;
-			foreach(Junction t in junctiontier[1].Junction){
+			foreach(Junction t in junctiontier[jtier].Junction){
 				if(Vector3.Distance(point,t.Point)<3){
 					canbeplaced=false;
 				}
 			}
 			if(canbeplaced){
-				junctiontier[1].Junction[numJunc].Point = point;
+				junctiontier[jtier].Junction.Add(new Junction());
+				junctiontier[jtier].Junction[jindex].Point = point;
+				junctiontier[jtier].Junction[jindex].Index=jindex;
 				Instantiate(cube,point,Quaternion.identity);
+				jindex++;
 			}
 			
 		}
 
-		for (int t=0; t<junctiontier[jindex].Junction.Count; t++){
-			if(Vector3.Distance(junctiontier[jindex-1].Junction[0].Point,junctiontier[jindex].Junction[t].Point)<7){
-				junctiontier[jindex-1].Junction[0].ConnectedTo.Add(t);
+		foreach (Junction a in junctiontier[jtier-1].Junction){
+			foreach (Junction b in junctiontier[jtier].Junction){
+				if(Vector3.Distance(a.Point,b.Point)<7){
+					a.ConnectedTo.Add(b.Index);
+				}
 			}
 		}
 
 		int pathnumber = 0;
 		float deltax, deltaz;
 
-		foreach (Junction p in junctiontier[jindex-1].Junction){
+		foreach (Junction p in junctiontier[jtier-1].Junction){
 			foreach(int c in p.ConnectedTo){
-				if(Vector3.Distance(p.Point,junctiontier[jindex].Junction[c].Point)<8){
+				Junction v =junctiontier[jtier].Junction[c];
+				if(Vector3.Distance(p.Point,v.Point)<8){
 					Paths.Add (new Path ());
-					deltax=(junctiontier[jindex].Junction[c].Point.x-p.Point.x)/20;
-					deltaz=(junctiontier[jindex].Junction[c].Point.z-p.Point.z)/20;
+					deltax=(v.Point.x-p.Point.x)/20;
+					deltaz=(v.Point.z-p.Point.z)/20;
 					for (var i = 0; i<20; i++) {
 						Paths[pathnumber].Points.Add(new Vector3(p.Point.x+deltax*i,0.5f,p.Point.z+deltaz*i));
 						Instantiate(cube,Paths[pathnumber].Points[i],Quaternion.identity);
@@ -71,6 +74,116 @@ public class InitPaths : MonoBehaviour {
 
 			}
 		}
+
+
+		// re peat of above
+		junctiontier.Add (new JunctionTier());
+		jtier++;
+		jindex = 0;
+
+		foreach (Junction r in junctiontier[jtier-1].Junction) {
+			for (int numJunc=0; numJunc<3; numJunc++) {
+				angle = Random.Range (180, 270); //(135, 315);
+				direction = new Vector3 (Mathf.Cos (Mathf.Deg2Rad * angle), 0, Mathf.Sin (Mathf.Deg2Rad * angle));
+				point = r.Point + direction * Random.Range (5, 7);
+				bool canbeplaced = true;
+				foreach (Junction t in junctiontier[jtier].Junction) {
+					if (Vector3.Distance (point, t.Point) < 3) {
+						canbeplaced = false;
+					}
+				}
+				if (canbeplaced) {
+					junctiontier [jtier].Junction.Add (new Junction ());
+					junctiontier [jtier].Junction [jindex].Point = point;
+					junctiontier [jtier].Junction [jindex].Index = jindex;
+					Instantiate (cube, point, Quaternion.identity);
+					jindex++;
+				}
+			}
+		}
+
+		foreach (Junction a in junctiontier[jtier-1].Junction){
+			foreach (Junction b in junctiontier[jtier].Junction){
+				if(Vector3.Distance(a.Point,b.Point)<7){
+					a.ConnectedTo.Add(b.Index);
+				}
+			}
+		}
+		
+
+		
+		foreach (Junction p in junctiontier[jtier-1].Junction){
+			foreach(int c in p.ConnectedTo){
+				Junction v =junctiontier[jtier].Junction[c];
+				if(Vector3.Distance(p.Point,v.Point)<8){
+					Paths.Add (new Path ());
+					deltax=(v.Point.x-p.Point.x)/20;
+					deltaz=(v.Point.z-p.Point.z)/20;
+					for (var i = 0; i<20; i++) {
+						Paths[pathnumber].Points.Add(new Vector3(p.Point.x+deltax*i,0.5f,p.Point.z+deltaz*i));
+						Instantiate(cube,Paths[pathnumber].Points[i],Quaternion.identity);
+					}
+					pathnumber++;
+				}
+				
+			}
+		}
+
+
+		// re peat of above
+		junctiontier.Add (new JunctionTier());
+		jtier++;
+		jindex = 0;
+		
+		foreach (Junction r in junctiontier[jtier-1].Junction) {
+			for (int numJunc=0; numJunc<3; numJunc++) {
+				angle = Random.Range (180, 270); //(135, 315);
+				direction = new Vector3 (Mathf.Cos (Mathf.Deg2Rad * angle), 0, Mathf.Sin (Mathf.Deg2Rad * angle));
+				point = r.Point + direction * Random.Range (5, 7);
+				bool canbeplaced = true;
+				foreach (Junction t in junctiontier[jtier].Junction) {
+					if (Vector3.Distance (point, t.Point) < 3) {
+						canbeplaced = false;
+					}
+				}
+				if (canbeplaced) {
+					junctiontier [jtier].Junction.Add (new Junction ());
+					junctiontier [jtier].Junction [jindex].Point = point;
+					junctiontier [jtier].Junction [jindex].Index = jindex;
+					Instantiate (cube, point, Quaternion.identity);
+					jindex++;
+				}
+			}
+		}
+		
+		foreach (Junction a in junctiontier[jtier-1].Junction){
+			foreach (Junction b in junctiontier[jtier].Junction){
+				if(Vector3.Distance(a.Point,b.Point)<7){
+					a.ConnectedTo.Add(b.Index);
+				}
+			}
+		}
+		
+		
+		
+		foreach (Junction p in junctiontier[jtier-1].Junction){
+			foreach(int c in p.ConnectedTo){
+				Junction v =junctiontier[jtier].Junction[c];
+				if(Vector3.Distance(p.Point,v.Point)<8){
+					Paths.Add (new Path ());
+					deltax=(v.Point.x-p.Point.x)/20;
+					deltaz=(v.Point.z-p.Point.z)/20;
+					for (var i = 0; i<20; i++) {
+						Paths[pathnumber].Points.Add(new Vector3(p.Point.x+deltax*i,0.5f,p.Point.z+deltaz*i));
+						Instantiate(cube,Paths[pathnumber].Points[i],Quaternion.identity);
+					}
+					pathnumber++;
+				}
+				
+			}
+		}
+
+
 		// generalization of above for the rest of the paths
 
 
