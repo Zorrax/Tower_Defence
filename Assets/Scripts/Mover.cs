@@ -17,12 +17,42 @@ public class Mover : MonoBehaviour {
 	private GameObject CurrentPath;
 
 
-
+	float randnumb;
 	// Use this for initialization
 	void Start () {
 		CurrentPath = GameObject.Find ("PathMaker");
 		Paths = CurrentPath.GetComponent<InitPaths>().Paths; // reference
-		int[] mobpaths = {0,1};
+		randnumb = Random.value;
+		List<int> mobpaths = new List<int>();
+		int index = 0;
+		if(randnumb<0.5){
+			mobpaths.Add (0);
+		}else{
+			mobpaths.Add (1);
+		}
+		bool morepaths = true;
+		bool moreconnections = true;
+			while (morepaths) {
+				moreconnections=true;
+				while(moreconnections){
+					foreach( int t in Paths[mobpaths[index]].ConnectedTo){
+						randnumb=Random.value;
+						if(randnumb<0.3){
+							mobpaths.Add(t);
+							index++;
+							Debug.Log (index);
+							moreconnections=false; // problem here
+							break;
+						}
+					}
+				}
+				if(index>1){
+					morepaths=false;
+				}
+			}
+
+
+
 		foreach ( int y in mobpaths ){
 			for (int i =0; i < Paths[y].Points.Count-1 ; i++){
 				waypoints.Add(Paths[y].Points[i]);
