@@ -66,7 +66,7 @@ public class InitPaths : MonoBehaviour {
 							deltaz = (v.Point.z - p.Point.z) / 20;
 							for (var i = 0; i<20; i++) {
 								Paths [pathnumber].Points.Add (new Vector3 (p.Point.x + deltax * i, 0.5f, p.Point.z + deltaz * i));
-								Instantiate (cube, Paths [pathnumber].Points [i], Quaternion.identity);
+								//Instantiate (cube, Paths [pathnumber].Points [i], Quaternion.identity);
 							}
 							Paths [pathnumber].Junction= v;
 							foreach(Path m in Paths ){

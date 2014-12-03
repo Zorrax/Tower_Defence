@@ -40,7 +40,6 @@ public class Mover : MonoBehaviour {
 						if(randnumb<0.3){
 							mobpaths.Add(t);
 							index++;
-							Debug.Log (index);
 							moreconnections=false; // problem here
 							break;
 						}
