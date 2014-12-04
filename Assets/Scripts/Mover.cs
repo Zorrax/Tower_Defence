@@ -8,11 +8,13 @@ public class Mover : MonoBehaviour {
 	private Vector3 MoveVector;
 	private float MoveSpeed= 2f;
 	private float MinDistance=0.1f;
-	public  List<Vector3> waypoints = new List<Vector3>();
+
+	public float Health;
 
 
 	public Vector3 CurrentWaypoint;
 	public int CurrentIndex;
+	public List<Vector3> waypoints = new List<Vector3>();
 	
 	// Use this for initialization
 	void Start () {
