@@ -8,8 +8,7 @@ public class Tower : MonoBehaviour {
 	private float firetime = 0.5f;
 	public int Damage;
 	public List<GameObject> mobList = new List<GameObject>();   
-	
-	private bool isFiring = false;
+
 	
 	
 	private bool fireAtGameObject(GameObject target){

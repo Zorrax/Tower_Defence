@@ -2,33 +2,40 @@
 using System.Collections;
 
 public class Draganddrop : MonoBehaviour {
-
-
-	private Vector3 screenPoint;
-	private Vector3 offset;
-
-	// Use this for initialization
-	void Start () {
+	
+	private bool dragging = false;
+	private float distance;
+	
+	
+	void OnMouseEnter()
+	{
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnMouseExit()
+	{
+
 	}
-
-
+	
 	void OnMouseDown()
-	{ 
-		screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+	{
+		distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+		dragging = true;
 	}
 	
-	void OnMouseDrag() 
-	{  
-		Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-		
-		Vector3 curPosition   = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-		transform.position = curPosition;
+	void OnMouseUp()
+	{
+		dragging = false;
+	}
+	
+	void Update()
+	{	
+		distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+		if (dragging)
+		{
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Vector3 rayPoint = ray.GetPoint(distance);
+			transform.position = new Vector3(rayPoint.x,2,rayPoint.z);
+		}
 	}
 }

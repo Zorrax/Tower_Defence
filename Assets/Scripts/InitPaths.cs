@@ -14,7 +14,7 @@ public class InitPaths : MonoBehaviour {
 	void Start () { // 3 forskellige start paths
 		Random.seed = Seed;
 		Vector3 pos = new Vector3 (StartPos.position.x, 0.5f, StartPos.position.z), direction, point;
-		float angle, randnumb, Bx, Bz, T;
+		float angle, Bx, Bz, T;
 		// first points
 		List<JunctionTier> junctiontier = new List<JunctionTier> ();
 
@@ -24,7 +24,7 @@ public class InitPaths : MonoBehaviour {
 		junctiontier [jtier].Junction.Add (new Junction ());
 		junctiontier [jtier].Junction [0].Point = pos;
 		int pathnumber = 0;
-		float deltax, deltaz; // det er lige før man selv skal lave de 3 første paths
+
 
 		for (int q =0; q<3; q++) {
 			junctiontier.Add (new JunctionTier ());
