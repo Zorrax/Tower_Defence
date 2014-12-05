@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour {
 	private bool fireAtGameObject(GameObject target){
 		bool destroyGameObject = false;
 		
-		Healthbar.
+
 
 		destroyGameObject = true;
 		
