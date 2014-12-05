@@ -3,79 +3,36 @@ using System.Collections;
 
 public class Draganddrop : MonoBehaviour {
 	
-	Transform grabbed;
-	float grabDistance = 1f;
-	int grabLayerMask;
-	Vector3 grabOffset; //delta between transform transform position and hit point
-	bool useToggleDrag; // Didn't know which style you prefer. 
+	bool dragging = false;
+	Plane movePlane;
+	float angle=65;
+	float deltay;
+	float x;
 	
-	void Update () {
-		if (useToggleDrag){
-			UpdateToggleDrag();
-		} else {
-			UpdateHoldDrag();
-		}
+	void OnMouseDown ()
+	{
+		dragging = true;
+		movePlane = new Plane(-Camera.main.transform.forward,transform.position);
 	}
 	
-	// Toggles drag with mouse click
-	void UpdateToggleDrag () {
-		if (Input.GetMouseButtonDown(0)){ 
-			Grab();
-		} else {
-			if (grabbed) {
-				Drag();
-			}
+	void Update ()
+	{
+		if (!dragging || !this.enabled) {
+			return;
 		}
-	}
-	
-	// Drags when user holds down button
-	void UpdateHoldDrag () {
-		if (Input.GetMouseButton(0)) {
-			if (grabbed){
-				Drag();
-			} else { 
-				Grab();
-			}
-		} else {
-			if(grabbed){
-				//restore the original layermask
-				grabbed.gameObject.layer = grabLayerMask;
-			}
-			grabbed = null;
+		
+		if (Input.GetMouseButtonUp (0)) {
+			dragging = false;
 		}
-	}
-	
-	void Grab() {
-		if (grabbed){ 
-			grabbed = null;
-		} else {
-			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out hit)){          
-				grabbed = hit.transform;
-				if(grabbed.parent){
-					grabbed = grabbed.parent.transform;
-				}
-				//set the object to ignore raycasts
-				grabLayerMask = grabbed.gameObject.layer;
-				grabbed.gameObject.layer = 2;
-				//now immediately do another raycast to calculate the offset
-				if (Physics.Raycast(ray, out hit)){
-					grabOffset = grabbed.position - hit.point;
-				} else {
-					//important - clear the gab if there is nothing
-					//behind the object to drag against
-					grabbed = null;
-				}
-			}
-		}
-	}
-	
-	void Drag() {    
-		RaycastHit hit;
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		if (Physics.Raycast(ray, out hit)){      
-			grabbed.position = hit.point + grabOffset;
+		
+		Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+		float hitDist;
+		if (movePlane.Raycast(camRay,out hitDist)){
+			Vector3 Point = camRay.GetPoint(hitDist);
+			deltay=Point.y-2f;
+			x=(deltay/Mathf.Sin(Mathf.Deg2Rad*25))*Mathf.Sin(Mathf.Deg2Rad*65);
+			Vector3 CorPoint=new Vector3(3,2f,x);
+			transform.position = CorPoint;
 		}
 	}
 }
