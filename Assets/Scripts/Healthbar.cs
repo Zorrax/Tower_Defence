@@ -4,7 +4,7 @@ using System.Collections;
 public class Healthbar : MonoBehaviour {
 
 	public int maxHealth = 100;
-	public int curHealth = 100;
+	public float curHealth = 100F;
 	
 	public float healthBarLength;
 	
@@ -40,7 +40,7 @@ public class Healthbar : MonoBehaviour {
 		if(maxHealth < 1)
 			maxHealth = 1;
 		
-		healthBarLength = (Screen.width / 25) * (maxHealth / curHealth);
+		healthBarLength = (Screen.width / 25) * (curHealth / maxHealth);
 	}
 
 }

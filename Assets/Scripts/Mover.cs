@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Mover : MonoBehaviour {
-	
+
 	private Vector3 Direction;
 	private Vector3 MoveVector;
 	private float MoveSpeed= 2f;
@@ -15,7 +15,8 @@ public class Mover : MonoBehaviour {
 	public Vector3 CurrentWaypoint;
 	public int CurrentIndex;
 	public List<Vector3> waypoints = new List<Vector3>();
-	
+
+
 	// Use this for initialization
 	void Start () {
 		CurrentWaypoint = waypoints[0];
@@ -34,6 +35,7 @@ public class Mover : MonoBehaviour {
 				if (Vector3.Distance (CurrentWaypoint, transform.position) < MinDistance) {
 						++CurrentIndex;
 						if (CurrentIndex > waypoints.Count - 1) {
+
 							Destroy(gameObject);
 							return;
 						}
@@ -41,6 +43,4 @@ public class Mover : MonoBehaviour {
 
 				}
 		}
-
-
 }
