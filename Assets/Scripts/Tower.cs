@@ -26,6 +26,9 @@ public class Tower : MonoBehaviour {
 		
 
 	private void OnTriggerEnter(Collider other){
+		if(other.tag=="Aug"){
+			return;
+		}
 		
 		GameObject theObject = other.attachedRigidbody.gameObject; 
 		

@@ -86,9 +86,9 @@ GameObject:
   - 135: {fileID: 172544000}
   - 23: {fileID: 172543999}
   - 114: {fileID: 172543998}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Aug
-  m_TagString: Untagged
+  m_TagString: Aug
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
