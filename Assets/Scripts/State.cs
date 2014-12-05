@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Targetter : MonoBehaviour {
+public class State : MonoBehaviour {
 
+	public int SpawnCounter = 0;
+	public int CurrentJunctionTier=2;
 
 	// Use this for initialization
 	void Start () {
@@ -11,10 +13,6 @@ public class Targetter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
 
-	void OnTriggerEnter(Collider other) {
-		Destroy(other.gameObject);
 	}
 }
