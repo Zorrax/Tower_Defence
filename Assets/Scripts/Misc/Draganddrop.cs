@@ -8,13 +8,16 @@ public class Draganddrop : MonoBehaviour {
 	float hitDist, t;
 	Ray camRay;
 	Vector3 startPos, point, corPoint, triggerPos;
-	public GameObject curSphere;
+	public GameObject curSphere, lastSphere;
 	public GameObject mousedTower;
 	public GameObject tower;
 	bool isPlaced=false;
 
 	void Start(){
-		 renderer.material.color=Color.blue;
+		renderer.material.color=Color.blue;
+		lastSphere = new GameObject();
+		lastSphere.AddComponent<ID> ();
+		lastSphere.GetComponent<ID> ().sphereID = 0;
 	}
 
 	void OnTriggerEnter(Collider other){
@@ -26,6 +29,7 @@ public class Draganddrop : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 		isPlaced = false;
+		lastSphere = curSphere;
 	}
 
 
@@ -42,6 +46,7 @@ public class Draganddrop : MonoBehaviour {
 		} else if(isPlaced) {
 			transform.position = triggerPos;
 			tower=mousedTower;
+			tower.GetComponent<Tower>().AugList[lastSphere.GetComponent<ID>().sphereID]=null;
 			tower.GetComponent<Tower>().AugList[curSphere.GetComponent<ID>().sphereID]=gameObject;
 		}
 	}

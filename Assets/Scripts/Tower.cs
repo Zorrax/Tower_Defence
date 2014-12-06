@@ -12,7 +12,7 @@ public class Tower : MonoBehaviour {
 	public List<GameObject> AugList = new List<GameObject>();   
 
 	void Start(){
-		for(int a = 0;a<5;a++){
+		for(int a = 0;a<6;a++){
 			AugList.Add(null);
 		}
 	}
@@ -74,7 +74,7 @@ public class Tower : MonoBehaviour {
 			if(beef){
 
 				if(beef.GetComponent<AugDmg>()){
-					Damage= Damage +40*beef.GetComponent<AugDmg>().level;
+					Damage= Damage +20*beef.GetComponent<AugDmg>().level;
 				}
 
 			}
