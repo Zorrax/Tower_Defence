@@ -4,16 +4,34 @@ using System.Collections;
 public class Draganddrop : MonoBehaviour {
 
 	Plane movePlane;
-	float fixedDistance=2f;
+	float fixedDistance=1f;
 	float hitDist, t;
 	Ray camRay;
 	Vector3 startPos, point, corPoint;
+	bool isPlaced=true;
 
+	void OnTriggerStay(Collider other){
+		isPlaced = true;
+		transform.position = other.transform.position;
 	
+	}
+	void OnTriggerExit(Collider other){
+		isPlaced = false;
+	}
+
+
 	void OnMouseDown ()
 	{
 		startPos = transform.position; // save position in case draged to invalid place
 		movePlane = new Plane(-Camera.main.transform.forward,transform.position); // find a parallel plane to the camera based on obj start pos;
+	}
+
+	void OnMouseUp ()
+	{
+		if (!isPlaced) {
+			transform.position=startPos;
+		}
+
 	}
 	
 	void OnMouseDrag ()
@@ -26,7 +44,7 @@ public class Draganddrop : MonoBehaviour {
 			corPoint.x=camRay.origin.x+(point.x-camRay.origin.x)*t; // calculate the new point t futher along the ray
 			corPoint.y=camRay.origin.y+(point.y-camRay.origin.y)*t;
 			corPoint.z=camRay.origin.z+(point.z-camRay.origin.z)*t;
-			transform.position = corPoint; 
+			transform.position= corPoint; 
 		}
 	}
 }
