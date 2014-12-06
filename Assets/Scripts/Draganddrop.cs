@@ -2,42 +2,31 @@
 using System.Collections;
 
 public class Draganddrop : MonoBehaviour {
-	
-	bool dragging = false;
+
 	Plane movePlane;
-	float angle;
-	float deltax,deltay,deltaz;
-	float x;
+	float fixedDistance=2f;
+	float hitDist, t;
+	Ray camRay;
+	Vector3 startPos, point, corPoint;
+
 	
 	void OnMouseDown ()
 	{
-		dragging = true;
-		movePlane = new Plane(-Camera.main.transform.forward,transform.position);
+		startPos = transform.position; // save position in case draged to invalid place
+		movePlane = new Plane(-Camera.main.transform.forward,transform.position); // find a parallel plane to the camera based on obj start pos;
 	}
 	
-	void Update ()
+	void OnMouseDrag ()
 	{
-		if (!dragging || !this.enabled) {
-			return;
-		}
-		
-		if (Input.GetMouseButtonUp (0)) {
-			dragging = false;
-		}
-		
-		Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+		camRay = Camera.main.ScreenPointToRay(Input.mousePosition); // shoot a ray at the obj from mouse screen point
 
-		float hitDist;
-		float t;
-		if (movePlane.Raycast(camRay,out hitDist)){
-			Vector3 Point = camRay.GetPoint(hitDist);
-			deltax=Point.x-camRay.origin.x;
-			deltay=Point.y-camRay.origin.y;
-			deltaz=Point.z-camRay.origin.z;
-			t=-(2f-camRay.origin.y)/(camRay.origin.y-Point.y);
-
-			Vector3 CorPoint=new Vector3(camRay.origin.x+deltax*t,2f,camRay.origin.z+deltaz*t);
-			transform.position = CorPoint;
+		if (movePlane.Raycast(camRay,out hitDist)){ // finde the collision on movePlane
+			point = camRay.GetPoint(hitDist); // define the point on movePlane
+			t=-(fixedDistance-camRay.origin.y)/(camRay.origin.y-point.y); // the x,y or z plane you want to be fixed to
+			corPoint.x=camRay.origin.x+(point.x-camRay.origin.x)*t; // calculate the new point t futher along the ray
+			corPoint.y=camRay.origin.y+(point.y-camRay.origin.y)*t;
+			corPoint.z=camRay.origin.z+(point.z-camRay.origin.z)*t;
+			transform.position = corPoint; 
 		}
 	}
 }
