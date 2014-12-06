@@ -7,14 +7,23 @@ public class Draganddrop : MonoBehaviour {
 	float fixedDistance=1f;
 	float hitDist, t;
 	Ray camRay;
-	Vector3 startPos, point, corPoint;
-	bool isPlaced=true;
+	Vector3 startPos, point, corPoint, triggerPos;
+	public GameObject curSphere;
+	public GameObject mousedTower;
+	public GameObject tower;
+	bool isPlaced=false;
 
-	void OnTriggerStay(Collider other){
-		isPlaced = true;
-		transform.position = other.transform.position;
-	
+	void Start(){
+		 renderer.material.color=Color.blue;
 	}
+
+	void OnTriggerEnter(Collider other){
+		isPlaced = true;
+		curSphere = other.gameObject;
+		triggerPos = other.transform.position;
+		mousedTower=other.transform.parent.gameObject;
+	}
+
 	void OnTriggerExit(Collider other){
 		isPlaced = false;
 	}
@@ -29,13 +38,17 @@ public class Draganddrop : MonoBehaviour {
 	void OnMouseUp ()
 	{
 		if (!isPlaced) {
-			transform.position=startPos;
+			transform.position = startPos;
+		} else if(isPlaced) {
+			transform.position = triggerPos;
+			tower=mousedTower;
+			tower.GetComponent<Tower>().AugList[curSphere.GetComponent<ID>().sphereID]=gameObject;
 		}
-
 	}
 	
 	void OnMouseDrag ()
-	{
+	{	
+
 		camRay = Camera.main.ScreenPointToRay(Input.mousePosition); // shoot a ray at the obj from mouse screen point
 
 		if (movePlane.Raycast(camRay,out hitDist)){ // finde the collision on movePlane

@@ -6,7 +6,7 @@ public class Mover : MonoBehaviour {
 
 	private Vector3 Direction;
 	private Vector3 MoveVector;
-	private float MoveSpeed= 2f;
+	public float MoveSpeed= 2f;
 	private float MinDistance=0.1f;
 
 	public float Health;

@@ -6,8 +6,16 @@ public class Tower : MonoBehaviour {
 	
 	public float fireRate = 0.5f;
 	private float firetime = 0.5f;
-	public int Damage;
+	public int baseDamage =20;
+	private int Damage;
 	public List<GameObject> mobList = new List<GameObject>();   
+	public List<GameObject> AugList = new List<GameObject>();   
+
+	void Start(){
+		for(int a = 0;a<5;a++){
+			AugList.Add(null);
+		}
+	}
 
 	
 	
@@ -15,7 +23,7 @@ public class Tower : MonoBehaviour {
 		bool destroyGameObject = false;
 
 
-		target.GetComponent<Healthbar>().AddjustCurrentHealth(-20);
+		target.GetComponent<Healthbar>().AddjustCurrentHealth(-Damage);
 		if (target.GetComponent<Healthbar>().curHealth <= 0) {
 			destroyGameObject = true;
 				}
@@ -61,6 +69,17 @@ public class Tower : MonoBehaviour {
 	}
 	void Update()
 	{
+		Damage = baseDamage;
+		foreach (GameObject beef in AugList) {
+			if(beef){
+
+				if(beef.GetComponent<AugDmg>()){
+					Damage= Damage +40*beef.GetComponent<AugDmg>().level;
+				}
+
+			}
+		}
+
 		foreach (GameObject Mob in mobList) {
 			if( Mob == null ){
 				mobList.Remove(Mob);
