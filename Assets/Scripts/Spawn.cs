@@ -51,7 +51,7 @@ public class Spawn : MonoBehaviour {
 				while (morepaths) {
 					mobpaths.Add(Paths[mobpaths[index]].ConnectedTo[Random.Range(0,Paths[mobpaths[index]].ConnectedTo.Count)]);
 					index++;
-					if(index == state.CurrentJunctionTier){
+					if(index == 4){//state.CurrentJunctionTier){
 						morepaths=false;
 					}
 				}

@@ -26,13 +26,13 @@ public class InitPaths : MonoBehaviour {
 		int pathnumber = 0;
 
 
-		for (int q =0; q<3; q++) {
+		for (int q =0; q<5; q++) {
 			junctiontier.Add (new JunctionTier ());
 			jtier++;
 			jindex = 0;
 			foreach (Junction r in junctiontier[jtier-1].Junction) {
 				for (int numJunc=0; numJunc<3+jtier; numJunc++) {
-					angle = Random.Range (180f, 270f); //(135, 315) something odd here with wide angles;
+					angle = Random.Range (135f, 315f); //(135, 315) something odd here with wide angles;
 					direction = new Vector3 (Mathf.Cos (Mathf.Deg2Rad * angle), 0, Mathf.Sin (Mathf.Deg2Rad * angle));
 					point = r.Point + direction * Random.Range (5f, 7f);
 					bool canbeplaced = true;
@@ -52,7 +52,6 @@ public class InitPaths : MonoBehaviour {
 					if (canbeplaced) {
 						junctiontier [jtier].Junction.Add (new Junction ());
 						junctiontier [jtier].Junction [jindex].Point = point;
-						junctiontier [jtier].Junction [jindex].Index = jindex;
 						Instantiate (cube, point, Quaternion.identity);
 						jindex++;
 						}
@@ -64,7 +63,10 @@ public class InitPaths : MonoBehaviour {
 							List<Vector3> juncs = new List<Vector3> ();
 							juncs.Clear ();
 							juncs.Add (r.Point);
-							for (int k=0; k<3; k++) {
+							if(jtier>1){
+								juncs.Add (r.bPoint);
+							}
+							for (int k=0; k<2; k++) {
 								juncs.Add (new Vector3 (r.Point.x - Random.Range (0 + (k*0.5f + 1), 2 * (k*0.5f + 1)), 0.5f, r.Point.z - Random.Range (0 + (k*0.5f + 1), 2 * (k*0.5f + 1))));
 							}
 							juncs.Add (b.Point);
@@ -81,6 +83,8 @@ public class InitPaths : MonoBehaviour {
 								Paths [pathnumber].Points.Add (new Vector3 (Bx, 0.5f, Bz));
 								Instantiate (cube, Paths [pathnumber].Points [u], Quaternion.identity);
 							}
+							int end=Paths [pathnumber].Points.Count;
+							b.bPoint=(Paths [pathnumber].Points[end-1]-Paths [pathnumber].Points[end-2])*5+Paths [pathnumber].Points[end-1];
 							Paths [pathnumber].Junction = b;
 							foreach (Path m in Paths) {
 								if (m.Junction == r) {

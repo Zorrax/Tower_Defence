@@ -4,7 +4,7 @@ using System.Collections;
 public class State : MonoBehaviour {
 
 	public int SpawnCounter = 0;
-	public int CurrentJunctionTier=2;
+	public int CurrentJunctionTier=4;
 
 	// Use this for initialization
 	void Start () {
