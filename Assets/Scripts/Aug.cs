@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AugDmg : MonoBehaviour {
+public class Aug : MonoBehaviour {
 	public int level = 1;
 	public int augID=0;
+	public string type="damage";
 
 
 

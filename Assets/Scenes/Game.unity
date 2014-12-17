@@ -274,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   augID: 0
+  type: damage
 --- !u!1 &199494295
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cube: {fileID: 100000, guid: 3a7502a201e7df247b0b70c7367f6d44, type: 2}
   StartPos: {fileID: 642931811}
-  Seed: 10
+  Seed: 100
 --- !u!4 &572076971
 Transform:
   m_ObjectHideFlags: 0
@@ -1165,6 +1166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   augID: 1
+  type: damage
 --- !u!54 &1785524129
 Rigidbody:
   m_ObjectHideFlags: 0

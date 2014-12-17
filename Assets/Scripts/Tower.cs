@@ -70,11 +70,11 @@ public class Tower : MonoBehaviour {
 	void Update()
 	{
 		Damage = baseDamage;
-		foreach (GameObject beef in AugList) {
+		foreach (GameObject beef in AugList) { // update damage based on the augumentations
 			if(beef){
-
-				if(beef.GetComponent<AugDmg>()){
-					Damage= Damage +20*beef.GetComponent<AugDmg>().level;
+				Aug me=beef.GetComponent("Aug") as Aug;
+				if(me.type =="damage"){
+					Damage= Damage +20*me.level;
 				}
 
 			}

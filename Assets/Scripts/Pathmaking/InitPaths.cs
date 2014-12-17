@@ -84,7 +84,11 @@ public class InitPaths : MonoBehaviour {
 								Instantiate (cube, Paths [pathnumber].Points [u], Quaternion.identity);
 							}
 							int end=Paths [pathnumber].Points.Count;
-							b.bPoint=(Paths [pathnumber].Points[end-1]-Paths [pathnumber].Points[end-2])*5+Paths [pathnumber].Points[end-1];
+							if(b.bPoint.x==0){
+								b.bPoint=(Paths [pathnumber].Points[end-1]-Paths [pathnumber].Points[end-2])*5+Paths [pathnumber].Points[end-1];
+							}else{
+								b.bPoint=(b.bPoint/2)+((Paths [pathnumber].Points[end-1]-Paths [pathnumber].Points[end-2])*5+Paths [pathnumber].Points[end-1])/2;
+							}
 							Paths [pathnumber].Junction = b;
 							foreach (Path m in Paths) {
 								if (m.Junction == r) {
