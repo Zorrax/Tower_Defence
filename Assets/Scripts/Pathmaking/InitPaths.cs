@@ -81,7 +81,7 @@ public class InitPaths : MonoBehaviour {
 									Bz = Bz + (Factorial (n) / (Factorial (h) * Factorial (n - h))) * Mathf.Pow ((1 - T), (n - h)) * Mathf.Pow (T, h) * juncs [i].z;
 								}
 								Paths [pathnumber].Points.Add (new Vector3 (Bx, 0.5f, Bz));
-								Instantiate (cube, Paths [pathnumber].Points [u], Quaternion.identity);
+								//Instantiate (cube, Paths [pathnumber].Points [u], Quaternion.identity);
 							}
 							int end=Paths [pathnumber].Points.Count;
 							if(b.bPoint.x==0){

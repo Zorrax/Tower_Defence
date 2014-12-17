@@ -4,18 +4,20 @@ using System.Collections;
 public class Healthbar : MonoBehaviour {
 
 	public int maxHealth = 100;
-	public float curHealth = 100F;
+	public float curHealth = 100f;
+	private float PhysicalResistance=10;
+	private float FireResistance=5;
 	
 	public float healthBarLength;
 	
 	// Use this for initialization
 	void Start () {
-
+		healthBarLength = (Screen.width / 25) * (curHealth / maxHealth);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		AddjustCurrentHealth(0);   
+
 	}
 	
 	void OnGUI()
@@ -28,8 +30,13 @@ public class Healthbar : MonoBehaviour {
 		
 	}
 	
-	public void AddjustCurrentHealth(int adj) {
-		curHealth += adj;
+	public void AddjustCurrentHealth(DamageClass Damage) {
+
+		curHealth -= (Damage.Fire-FireResistance);
+		curHealth -= (Damage.Physical-PhysicalResistance);
+
+		FireResistance -= Damage.FirePen;
+		PhysicalResistance -= Damage.PhysicalPen;
 		
 		if (curHealth < 0)
 			curHealth = 0;

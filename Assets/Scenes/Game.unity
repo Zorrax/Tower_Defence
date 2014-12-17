@@ -87,7 +87,7 @@ GameObject:
   - 23: {fileID: 9446636}
   - 114: {fileID: 9446639}
   m_Layer: 8
-  m_Name: Sphere
+  m_Name: Sphere1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 9446634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.11314559, y: 0, z: 0}
+  m_LocalPosition: {x: .954113007, y: 0, z: -.054282181}
   m_LocalScale: {x: .449999988, y: .449999988, z: .449999988}
   m_Children: []
   m_Father: {fileID: 1644913401}
@@ -137,7 +137,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
+  m_Radius: .100000001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &9446638
 MeshFilter:
@@ -275,6 +275,7 @@ MonoBehaviour:
   level: 1
   augID: 0
   type: damage
+  specialchance: 0
 --- !u!1 &199494295
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cube: {fileID: 100000, guid: 3a7502a201e7df247b0b70c7367f6d44, type: 2}
   StartPos: {fileID: 642931811}
-  Seed: 100
+  Seed: 5
 --- !u!4 &572076971
 Transform:
   m_ObjectHideFlags: 0
@@ -552,7 +553,7 @@ GameObject:
   - 23: {fileID: 755324751}
   - 114: {fileID: 755324750}
   m_Layer: 8
-  m_Name: Sphere
+  m_Name: Sphere3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -565,7 +566,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 755324748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0486459732, y: 0, z: -.991858006}
+  m_LocalPosition: {x: -.0486459732, y: 0, z: -1.00533772}
   m_LocalScale: {x: .449999988, y: .449999988, z: .449999988}
   m_Children: []
   m_Father: {fileID: 1644913401}
@@ -614,7 +615,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
+  m_Radius: .100000001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &755324753
 MeshFilter:
@@ -637,7 +638,7 @@ GameObject:
   - 23: {fileID: 856766080}
   - 114: {fileID: 856766083}
   m_Layer: 8
-  m_Name: Sphere
+  m_Name: Sphere5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,7 +651,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 856766078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.929142118, y: 0, z: 0}
+  m_LocalPosition: {x: -.917398989, y: 0, z: -.0984153897}
   m_LocalScale: {x: .449999988, y: .449999988, z: .449999988}
   m_Children: []
   m_Father: {fileID: 1644913401}
@@ -687,7 +688,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
+  m_Radius: .100000001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &856766082
 MeshFilter:
@@ -722,7 +723,7 @@ GameObject:
   - 23: {fileID: 894161449}
   - 114: {fileID: 894161448}
   m_Layer: 8
-  m_Name: Sphere
+  m_Name: Sphere2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -735,7 +736,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 894161446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.742066622, y: 0, z: -.675894201}
+  m_LocalPosition: {x: -.729982018, y: 0, z: -.79816097}
   m_LocalScale: {x: .449999988, y: .449999988, z: .449999988}
   m_Children: []
   m_Father: {fileID: 1644913401}
@@ -784,7 +785,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
+  m_Radius: .100000001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &894161451
 MeshFilter:
@@ -903,7 +904,7 @@ GameObject:
   - 23: {fileID: 1235705349}
   - 114: {fileID: 1235705348}
   m_Layer: 8
-  m_Name: Sphere
+  m_Name: Sphere4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,7 +917,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1235705346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .706849396, y: 0, z: -.840931356}
+  m_LocalPosition: {x: .70737946, y: 0, z: -.783595026}
   m_LocalScale: {x: .449999988, y: .449999988, z: .449999988}
   m_Children: []
   m_Father: {fileID: 1644913401}
@@ -965,7 +966,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
+  m_Radius: .100000001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1235705351
 MeshFilter:
@@ -1164,9 +1165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b7b6d3be1b63f47a22b6b4c6f19000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 2
   augID: 1
-  type: damage
+  type: fire
+  specialchance: 0
 --- !u!54 &1785524129
 Rigidbody:
   m_ObjectHideFlags: 0
