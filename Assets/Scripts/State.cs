@@ -11,7 +11,7 @@ public class State : MonoBehaviour {
 	void Start () {
 	
 	}
-	void TogglePause(){
+	public void TogglePause(){
 		Running = !Running;
 	}
 	
