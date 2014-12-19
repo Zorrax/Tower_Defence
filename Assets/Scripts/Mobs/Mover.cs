@@ -25,22 +25,24 @@ public class Mover : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+				if (GameObject.Find ("GameState").GetComponent<State> ().Running) {
 
-				Direction  = CurrentWaypoint - transform.position;
-				MoveVector = Direction.normalized * MoveSpeed * Time.deltaTime;
-				transform.position += MoveVector;
-				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (Direction), 4 * Time.deltaTime);
+						Direction = CurrentWaypoint - transform.position;
+						MoveVector = Direction.normalized * MoveSpeed * Time.deltaTime;
+						transform.position += MoveVector;
+						transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (Direction), 4 * Time.deltaTime);
 
 		
-				if (Vector3.Distance (CurrentWaypoint, transform.position) < MinDistance) {
-						++CurrentIndex;
-						if (CurrentIndex > waypoints.Count - 1) {
+						if (Vector3.Distance (CurrentWaypoint, transform.position) < MinDistance) {
+								++CurrentIndex;
+								if (CurrentIndex > waypoints.Count - 1) {
 
-							Destroy(gameObject);
-							return;
+										Destroy (gameObject);
+										return;
+								}
+								CurrentWaypoint = waypoints [CurrentIndex];
+
 						}
-						CurrentWaypoint = waypoints [CurrentIndex];
-
 				}
 		}
 }

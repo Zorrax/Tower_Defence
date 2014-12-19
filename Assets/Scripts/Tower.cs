@@ -87,15 +87,15 @@ public class Tower : MonoBehaviour {
 	}
 	void Update()
 	{
-
-		foreach (GameObject Mob in mobList) {
-			if( Mob == null ){
-				mobList.Remove(Mob);
-				break;
+		if(GameObject.Find ("GameState").GetComponent<State>().Running){
+			foreach (GameObject Mob in mobList) {
+				if( Mob == null ){
+					mobList.Remove(Mob);
+					break;
+				}
 			}
+			doFireSequence ();
+
 		}
-		doFireSequence ();
-
-
 	}
 }
