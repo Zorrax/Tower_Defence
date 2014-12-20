@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Tower : MonoBehaviour {
 	
@@ -77,7 +78,9 @@ public class Tower : MonoBehaviour {
 			UpdateDamage();
 
 			if (mobList.Count > 0) {
-				if (fireAtGameObject (mobList [0])) {				
+				if (fireAtGameObject (mobList [0])) {	
+					GameObject.Find("GameState").GetComponent<State>().Money+=1;
+					GameObject.Find("Money").GetComponent<Text>().text="Currency: "+GameObject.Find("GameState").GetComponent<State>().Money;
 					Destroy (mobList [0]);
 					mobList.RemoveAt (0);
 				}

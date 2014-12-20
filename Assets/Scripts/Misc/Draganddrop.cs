@@ -14,7 +14,7 @@ public class Draganddrop : MonoBehaviour {
 	bool isPlaced=false;
 
 	void Start(){
-		renderer.material.color=Color.blue;
+
 		lastSphere = new GameObject();
 		lastSphere.AddComponent<ID> ();
 		lastSphere.GetComponent<ID> ().sphereID = 0;
