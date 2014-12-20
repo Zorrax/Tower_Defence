@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Draganddrop : MonoBehaviour {
 
+	public Canvas tooltip;
 	Plane movePlane;
 	float fixedDistance=1f;
 	float hitDist, t;
@@ -14,7 +16,7 @@ public class Draganddrop : MonoBehaviour {
 	bool isPlaced=false;
 
 	void Start(){
-
+		tooltip.enabled = false;
 		lastSphere = new GameObject();
 		lastSphere.AddComponent<ID> ();
 		lastSphere.GetComponent<ID> ().sphereID = 0;
@@ -35,6 +37,10 @@ public class Draganddrop : MonoBehaviour {
 
 	void OnMouseDown ()
 	{
+		tooltip.enabled = !tooltip.enabled;
+		if(tooltip.enabled==true){
+			GetComponent<Aug> ().Updatetooltip ();
+		}
 		startPos = transform.position; // save position in case draged to invalid place
 		movePlane = new Plane(-Camera.main.transform.forward,transform.position); // find a parallel plane to the camera based on obj start pos;
 	}
@@ -43,9 +49,13 @@ public class Draganddrop : MonoBehaviour {
 	{
 		if (!isPlaced) {
 			transform.position = startPos;
+			tooltip.enabled=true;
 		} else if(isPlaced) {
 			transform.position = triggerPos;
 			tower=mousedTower;
+			if(tower.GetComponent<Tower>().AugList[lastSphere.GetComponent<ID>().sphereID]==tower.GetComponent<Tower>().AugList[curSphere.GetComponent<ID>().sphereID]){
+				tooltip.enabled=false;
+			}
 			tower.GetComponent<Tower>().AugList[lastSphere.GetComponent<ID>().sphereID]=null;
 			tower.GetComponent<Tower>().AugList[curSphere.GetComponent<ID>().sphereID]=gameObject;
 		}
@@ -53,7 +63,7 @@ public class Draganddrop : MonoBehaviour {
 	
 	void OnMouseDrag ()
 	{	
-
+	
 		camRay = Camera.main.ScreenPointToRay(Input.mousePosition); // shoot a ray at the obj from mouse screen point
 
 		if (movePlane.Raycast(camRay,out hitDist)){ // finde the collision on movePlane
