@@ -68,7 +68,7 @@ public class Spawn : MonoBehaviour {
 										Vector3 pos = new Vector3 (StartPos.position.x, StartPos.position.y, StartPos.position.z);
 										curmob = Instantiate (Mob, pos, Quaternion.identity) as GameObject;
 										curmob.GetComponent<Mover> ().waypoints = new List<Vector3> (waypoints);
-										curmob.GetComponent<Mover> ().Health = Mathf.Pow (1.01f, state.SpawnCounter); // assign mob traits here 
+										curmob.GetComponent<Mover> ().Health = Mathf.Pow (2f, state.SpawnCounter); // virker ikke helt // assign mob traits here 
 										GroupInstantiationTimer = 0.7f;
 										mobsperwave--;
 								}
