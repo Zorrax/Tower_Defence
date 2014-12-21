@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour {
 
@@ -7,20 +8,22 @@ public class Healthbar : MonoBehaviour {
 	public float curHealth = 100f;
 	private float PhysicalResistance=10;
 	private float FireResistance=5;
-	
+
+	public Image healthbar;
+
 	public float healthBarLength;
 	
 	// Use this for initialization
 	void Start () {
-		healthBarLength = (Screen.width / 25) * (curHealth / maxHealth);
+		//healthBarLength = (Screen.width / 25) * (curHealth / maxHealth);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		healthbar.fillAmount = healthBarLength;
 	}
 	
-	void OnGUI()
+	/*void OnGUI()
 	{
 		
 		Vector2 targetPos;
@@ -28,7 +31,7 @@ public class Healthbar : MonoBehaviour {
 		
 		GUI.Box(new Rect(targetPos.x - 20, Screen.height- targetPos.y - 20, healthBarLength, 5), curHealth + "/" + maxHealth);
 		
-	}
+	}*/
 	
 	public void AddjustCurrentHealth(DamageClass Damage) {
 
@@ -47,7 +50,7 @@ public class Healthbar : MonoBehaviour {
 		if(maxHealth < 1)
 			maxHealth = 1;
 		
-		healthBarLength = (Screen.width / 25) * (curHealth / maxHealth);
+		healthBarLength =  (curHealth / maxHealth);
 	}
 
 }

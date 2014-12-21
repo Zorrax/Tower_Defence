@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class InitPaths : MonoBehaviour {
 	public GameObject cube;
+	public GameObject basictower;
 	public List<Path> Paths = new List<Path>();
 	public Transform StartPos;
 	public int Seed;
@@ -53,7 +54,7 @@ public class InitPaths : MonoBehaviour {
 					if (canbeplaced) {
 						junctiontier [jtier].Junction.Add (new Junction ());
 						junctiontier [jtier].Junction [jindex].Point = point;
-						//Instantiate (cube, point, Quaternion.identity);
+						Instantiate (cube, point, Quaternion.identity);
 						jindex++;
 						}
 					}
@@ -82,7 +83,7 @@ public class InitPaths : MonoBehaviour {
 									Bz = Bz + (Factorial (n) / (Factorial (h) * Factorial (n - h))) * Mathf.Pow ((1 - T), (n - h)) * Mathf.Pow (T, h) * juncs [i].z;
 								}
 								Paths [pathnumber].Points.Add (new Vector3 (Bx, 0.5f, Bz));
-								//Instantiate (cube, Paths [pathnumber].Points [u], Quaternion.identity);
+								Instantiate (cube, Paths [pathnumber].Points [u], Quaternion.identity);
 							}
 							int end=Paths [pathnumber].Points.Count;
 							if(b.bPoint.x==0){
@@ -97,6 +98,11 @@ public class InitPaths : MonoBehaviour {
 								}
 							} 
 							pathnumber++;
+						}
+						if(!r.hasTower && r.bPoint.x!=0){
+						Vector3 spawnpoint=new Vector3(r.bPoint.x,r.bPoint.y+0.5f,r.bPoint.z);
+							Instantiate(basictower,spawnpoint,Quaternion.identity);
+							r.hasTower=true;
 						}
 					}
 				}

@@ -70,6 +70,7 @@ public class Spawn : MonoBehaviour {
 										curmob.GetComponent<Mover> ().waypoints = new List<Vector3> (waypoints);
 										curmob.GetComponent<Healthbar> ().curHealth =100+ Mathf.Pow (1.5f, state.SpawnCounter); // virker ikke helt // assign mob traits here 
 										curmob.GetComponent<Healthbar> ().maxHealth=curmob.GetComponent<Healthbar> ().curHealth;
+										curmob.GetComponent<Healthbar> ().AddjustCurrentHealth(new DamageClass() );
 										GroupInstantiationTimer = 1.4f;
 										mobsperwave--;
 								}

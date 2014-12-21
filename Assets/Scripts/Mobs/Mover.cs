@@ -9,8 +9,6 @@ public class Mover : MonoBehaviour {
 	public float MoveSpeed= 2f;
 	private float MinDistance=0.1f;
 
-	public float Health;
-
 
 	public Vector3 CurrentWaypoint;
 	public int CurrentIndex;
