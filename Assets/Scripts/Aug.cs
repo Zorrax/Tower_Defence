@@ -11,7 +11,7 @@ public class Aug : MonoBehaviour {
 
 
 	public void Updatetooltip(){
-		tooltip.text = "Type: "+type+"\nLevel: " + level+"\nSpecial: "+specialchance;
+		tooltip.text = "Type: "+char.ToUpper(type[0]) + type.Substring(1)+"\nLevel: " + level+"\nSpecial: "+specialchance;
 	}
 	public void LevelUp(){
 		if(GameObject.Find("GameState").GetComponent<State>().Money>=15){
