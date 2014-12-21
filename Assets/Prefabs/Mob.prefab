@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ceae25298d6434cb92d8cf48eefab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveSpeed: 1
   Health: 0
   CurrentWaypoint: {x: 0, y: 0, z: 0}
   CurrentIndex: 0

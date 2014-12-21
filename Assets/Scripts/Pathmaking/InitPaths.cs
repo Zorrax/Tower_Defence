@@ -52,7 +52,7 @@ public class InitPaths : MonoBehaviour {
 					if (canbeplaced) {
 						junctiontier [jtier].Junction.Add (new Junction ());
 						junctiontier [jtier].Junction [jindex].Point = point;
-						Instantiate (cube, point, Quaternion.identity);
+						//Instantiate (cube, point, Quaternion.identity);
 						jindex++;
 						}
 					}

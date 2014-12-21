@@ -7,8 +7,8 @@ public class Spawn : MonoBehaviour {
 	public Transform StartPos;
 	public GameObject Mob;
 
-	private float InstantiationTimer = 3f;
-	private float GroupInstantiationTimer = 0.7f;
+	private float InstantiationTimer = 6f;
+	private float GroupInstantiationTimer = 1.4f;
 	private int mobsperwave=5;
 	private bool pathnotset=true;
 	private GameObject curmob;
@@ -51,7 +51,7 @@ public class Spawn : MonoBehaviour {
 										while (morepaths) {
 												mobpaths.Add (Paths [mobpaths [index]].ConnectedTo [Random.Range (0, Paths [mobpaths [index]].ConnectedTo.Count)]);
 												index++;
-												if (index == 4) {//state.CurrentJunctionTier){
+												if (index == 3) {//state.CurrentJunctionTier){
 														morepaths = false;
 												}
 										}
@@ -68,12 +68,13 @@ public class Spawn : MonoBehaviour {
 										Vector3 pos = new Vector3 (StartPos.position.x, StartPos.position.y, StartPos.position.z);
 										curmob = Instantiate (Mob, pos, Quaternion.identity) as GameObject;
 										curmob.GetComponent<Mover> ().waypoints = new List<Vector3> (waypoints);
-										curmob.GetComponent<Mover> ().Health = Mathf.Pow (2f, state.SpawnCounter); // virker ikke helt // assign mob traits here 
-										GroupInstantiationTimer = 0.7f;
+										curmob.GetComponent<Healthbar> ().curHealth =100+ Mathf.Pow (1.5f, state.SpawnCounter); // virker ikke helt // assign mob traits here 
+										curmob.GetComponent<Healthbar> ().maxHealth=curmob.GetComponent<Healthbar> ().curHealth;
+										GroupInstantiationTimer = 1.4f;
 										mobsperwave--;
 								}
 								if (mobsperwave == 0) {
-										InstantiationTimer = 3f;
+										InstantiationTimer = 6f;
 										mobsperwave = 5;
 										pathnotset = true;
 										waypoints.Clear ();

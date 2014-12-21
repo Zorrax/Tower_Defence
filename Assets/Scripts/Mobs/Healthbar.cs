@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Healthbar : MonoBehaviour {
 
-	public int maxHealth = 100;
+	public float maxHealth = 100;
 	public float curHealth = 100f;
 	private float PhysicalResistance=10;
 	private float FireResistance=5;
