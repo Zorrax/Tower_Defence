@@ -12,6 +12,7 @@ public class InitPaths : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () { // 3 forskellige start paths
+
 		Random.seed = Seed;
 		Vector3 pos = new Vector3 (StartPos.position.x, 0.5f, StartPos.position.z), direction, point;
 		float angle, Bx, Bz, T;

@@ -9,7 +9,12 @@ public class MakeAug : MonoBehaviour {
 		if(GameObject.Find("GameState").GetComponent<State>().Money>=15){
 			GameObject.Find("GameState").GetComponent<State>().Money-=15;
 			GameObject.Find("Money").GetComponent<Text>().text="Currency: "+GameObject.Find("GameState").GetComponent<State>().Money;
-			GameObject newAug= Instantiate(spawn,new Vector3(10,1,10),Quaternion.identity) as GameObject;
+
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			Vector3 point=ray.GetPoint(6);
+			point.x-=2;
+			GameObject newAug= Instantiate(spawn,point,Quaternion.identity) as GameObject;
 			newAug.GetComponent<Aug> ().type = type;
 			if(type=="damage"){
 				newAug.renderer.material.color=Color.black;

@@ -9,7 +9,7 @@ public class Draganddrop : MonoBehaviour {
 	float fixedDistance=1f;
 	float hitDist, t;
 	Ray camRay;
-	Vector3 startPos, point, corPoint, triggerPos;
+	Vector3 startPos, point, corPoint, triggerPos, offset;
 	public GameObject curSphere, lastSphere;
 	public GameObject mousedTower;
 	public GameObject tower;
@@ -43,6 +43,14 @@ public class Draganddrop : MonoBehaviour {
 		}
 		startPos = transform.position; // save position in case draged to invalid place
 		movePlane = new Plane(-Camera.main.transform.forward,transform.position); // find a parallel plane to the camera based on obj start pos;
+	
+		camRay = Camera.main.ScreenPointToRay(Input.mousePosition); // shoot a ray at the obj from mouse screen point
+		
+		if (movePlane.Raycast(camRay,out hitDist)){ // finde the collision on movePlane
+			point = camRay.GetPoint(hitDist); // define the point on movePlane
+			offset= startPos-point; 
+		}
+	
 	}
 
 	void OnMouseUp ()
@@ -72,7 +80,7 @@ public class Draganddrop : MonoBehaviour {
 			corPoint.x=camRay.origin.x+(point.x-camRay.origin.x)*t; // calculate the new point t futher along the ray
 			corPoint.y=camRay.origin.y+(point.y-camRay.origin.y)*t;
 			corPoint.z=camRay.origin.z+(point.z-camRay.origin.z)*t;
-			transform.position= corPoint; 
+			transform.position= corPoint+offset; 
 		}
 	}
 }
