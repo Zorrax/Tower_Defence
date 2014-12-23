@@ -21,7 +21,7 @@ public class Healthbar : MonoBehaviour {
 	public void SetType(MobType type){
 		me = type;
 		StartHealth = me.Health;
-		healthBarLength = (Screen.width / 25) * (me.Health / StartHealth);
+		healthBarLength =  (me.Health / StartHealth);
 	}
 
 	
@@ -42,7 +42,7 @@ public class Healthbar : MonoBehaviour {
 		if(StartHealth < 1)
 			StartHealth = 1;
 		
-		healthBarLength =  (me.Health / StartHealth);
+		healthBarLength = (me.Health / StartHealth);
 	}
 
 }
