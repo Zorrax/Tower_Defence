@@ -4,53 +4,45 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour {
 
-	public float maxHealth = 100;
-	public float curHealth = 100f;
-	private float PhysicalResistance=10;
-	private float FireResistance=5;
-
-	public Image healthbar;
+	public float StartHealth;
+	public MobType me;
 
 	public float healthBarLength;
 	
 	// Use this for initialization
 	void Start () {
-		//healthBarLength = (Screen.width / 25) * (curHealth / maxHealth);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		healthbar.fillAmount = healthBarLength;
+
 	}
-	
-	/*void OnGUI()
-	{
-		
-		Vector2 targetPos;
-		targetPos = Camera.main.WorldToScreenPoint (transform.position);
-		
-		GUI.Box(new Rect(targetPos.x - 20, Screen.height- targetPos.y - 20, healthBarLength, 5), curHealth + "/" + maxHealth);
-		
-	}*/
+	public void SetType(MobType type){
+		me = type;
+		StartHealth = me.Health;
+		healthBarLength = (Screen.width / 25) * (me.Health / StartHealth);
+	}
+
 	
 	public void AddjustCurrentHealth(DamageClass Damage) {
 
-		curHealth -= (Damage.Fire-FireResistance);
-		curHealth -= (Damage.Physical-PhysicalResistance);
+		me.Health -= (Damage.Fire-me.FireResistance);
+		me.Health -= (Damage.Physical-me.PhysicalResistance);
 
-		FireResistance -= Damage.FirePen;
-		PhysicalResistance -= Damage.PhysicalPen;
+		me.FireResistance -= Damage.FirePen;
+		me.PhysicalResistance -= Damage.PhysicalPen;
 		
-		if (curHealth < 0)
-			curHealth = 0;
+		if (me.Health < 0)
+			me.Health = 0;
 		
-		if (curHealth > maxHealth)
-			curHealth = maxHealth;
+		if (me.Health > StartHealth)
+			me.Health = StartHealth;
 		
-		if(maxHealth < 1)
-			maxHealth = 1;
+		if(StartHealth < 1)
+			StartHealth = 1;
 		
-		healthBarLength =  (curHealth / maxHealth);
+		healthBarLength =  (me.Health / StartHealth);
 	}
 
 }

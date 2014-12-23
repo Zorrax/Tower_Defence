@@ -8,6 +8,7 @@ public class Mover : MonoBehaviour {
 	private Vector3 MoveVector;
 	public float MoveSpeed= 2f;
 	private float MinDistance=0.1f;
+	private bool waypointisset = false;
 
 
 	public Vector3 CurrentWaypoint;
@@ -17,13 +18,18 @@ public class Mover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+	}
+	public void SetWayP(List<Vector3> wayp){
+		waypoints = wayp;
 		CurrentWaypoint = waypoints[0];
 		CurrentIndex = 0;
+		waypointisset = true;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-				if (GameObject.Find ("GameState").GetComponent<State> ().Running) {
+				if (GameObject.Find ("GameState").GetComponent<State> ().Running && waypointisset) {
 
 						Direction = CurrentWaypoint - transform.position;
 						MoveVector = Direction.normalized * MoveSpeed * Time.deltaTime;

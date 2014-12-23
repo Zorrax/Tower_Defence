@@ -26,7 +26,7 @@ public class Tower : MonoBehaviour {
 
 
 		target.GetComponent<Healthbar>().AddjustCurrentHealth(Damage);
-		if (target.GetComponent<Healthbar>().curHealth <= 0) {
+		if (target.GetComponent<Healthbar>().me.Health <= 0f) {
 			destroyGameObject = true;
 				}
 

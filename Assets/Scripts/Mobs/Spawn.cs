@@ -5,13 +5,10 @@ using System.Collections.Generic;
 public class Spawn : MonoBehaviour {
 
 	public Transform StartPos;
-	public GameObject Mob;
+	public GameObject MobWave;
 
-	private float InstantiationTimer = 6f;
-	private float GroupInstantiationTimer = 1.4f;
-	private int mobsperwave=5;
-	private bool pathnotset=true;
-	private GameObject curmob;
+	private GameObject curmobwave;
+	private float InstantiationTimer = 1f;
 	private GameObject CurrentPath;
 	private State state;
 	private List<Path> Paths = new List<Path>();
@@ -27,26 +24,18 @@ public class Spawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		spawnmob ();
+		spawnmobwave ();
 	}
 
-	void spawnmob(){
+	void spawnmobwave(){
 		if (GameObject.Find ("GameState").GetComponent<State> ().Running) {
 						InstantiationTimer -= Time.deltaTime;
-						GroupInstantiationTimer -= Time.deltaTime;
 
-						if (InstantiationTimer <= 0) {
+						if (InstantiationTimer <= 0) {							
 
-								if (pathnotset) {
-
-										randnumb = Random.value;
 										List<int> mobpaths = new List<int> ();
 										int index = 0;
-										if (randnumb < 0.5) {
-												mobpaths.Add (0);
-										} else {
-												mobpaths.Add (1);
-										}
+										mobpaths.Add (0);
 										bool morepaths = true;
 										while (morepaths) {
 												mobpaths.Add (Paths [mobpaths [index]].ConnectedTo [Random.Range (0, Paths [mobpaths [index]].ConnectedTo.Count)]);
@@ -60,30 +49,24 @@ public class Spawn : MonoBehaviour {
 														waypoints.Add (Paths [y].Points [i]);
 												}
 										} // define the type of mob here 
-										state.SpawnCounter++;
-										pathnotset = false;
-								}
+										List<Vector3> points =new List<Vector3> (waypoints);
+										MobType mobtype=new MobType();
+										mobtype.Health=100f;
+										mobtype.PhysicalResistance=10f;
+										mobtype.FireResistance=5f;
 
-								if (mobsperwave > 0 && GroupInstantiationTimer <= 0) {
-										Vector3 pos = new Vector3 (StartPos.position.x, StartPos.position.y, StartPos.position.z);
-										curmob = Instantiate (Mob, pos, Quaternion.identity) as GameObject;
-										curmob.GetComponent<Mover> ().waypoints = new List<Vector3> (waypoints);
-										curmob.GetComponent<Healthbar> ().curHealth =100+ Mathf.Pow (1.5f, state.SpawnCounter); // virker ikke helt // assign mob traits here 
-										curmob.GetComponent<Healthbar> ().maxHealth=curmob.GetComponent<Healthbar> ().curHealth;
-										curmob.GetComponent<Healthbar> ().AddjustCurrentHealth(new DamageClass() );
-										GroupInstantiationTimer = 1.4f;
-										mobsperwave--;
-								}
-								if (mobsperwave == 0) {
-										InstantiationTimer = 6f;
-										mobsperwave = 5;
-										pathnotset = true;
+										state.SpawnCounter++;
+								
+										curmobwave = Instantiate (MobWave,StartPos.position, Quaternion.identity) as GameObject;
+										curmobwave.GetComponent<MobData>().SetMobs(points,mobtype);
+
+										
+										InstantiationTimer = 13f;
+									
 										waypoints.Clear ();
 
-								}
-
+								
 						}
 				}
-
 	}
 }
