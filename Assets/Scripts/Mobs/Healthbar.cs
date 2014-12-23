@@ -19,13 +19,14 @@ public class Healthbar : MonoBehaviour {
 
 	}
 	public void SetType(MobType type){
-		me = type;
+		me = new MobType (type);
 		StartHealth = me.Health;
 		healthBarLength =  (me.Health / StartHealth);
 	}
 
 	
 	public void AddjustCurrentHealth(DamageClass Damage) {
+
 
 		me.Health -= (Damage.Fire-me.FireResistance);
 		me.Health -= (Damage.Physical-me.PhysicalResistance);
