@@ -7,6 +7,7 @@ public class Spawn : MonoBehaviour {
 	public Transform StartPos;
 	public GameObject MobWave;
 
+
 	private GameObject curmobwave;
 	private float InstantiationTimer = 1f;
 	private GameObject CurrentPath;
@@ -51,8 +52,8 @@ public class Spawn : MonoBehaviour {
 										} // define the type of mob here 
 										List<Vector3> points =new List<Vector3> (waypoints);
 										MobType mobtype=new MobType();
-										mobtype.Health=100f;
-										mobtype.PhysicalResistance=10f;
+										mobtype.Health=100f+state.SpawnCounter*20;
+										mobtype.PhysicalResistance=10f+state.SpawnCounter*5;
 										mobtype.FireResistance=5f;
 
 										state.SpawnCounter++;

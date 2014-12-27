@@ -28,8 +28,8 @@ public class Healthbar : MonoBehaviour {
 	public void AddjustCurrentHealth(DamageClass Damage) {
 
 
-		me.Health -= (Damage.Fire-me.FireResistance);
-		me.Health -= (Damage.Physical-me.PhysicalResistance);
+		me.Health -= (Damage.Fire*(1-(me.FireResistance/100f)));
+		me.Health -= (Damage.Physical-(1-(me.PhysicalResistance/100f)));
 
 		me.FireResistance -= Damage.FirePen;
 		me.PhysicalResistance -= Damage.PhysicalPen;
