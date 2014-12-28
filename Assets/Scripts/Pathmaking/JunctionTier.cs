@@ -4,6 +4,6 @@ using System.Collections.Generic;
 
 public class JunctionTier  {
 
-	public List<Junction> Junction = new List<Junction>();
+	public List<Junction> junction = new List<Junction>();
 
 }

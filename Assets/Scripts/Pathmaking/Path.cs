@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class Path {
 
-	public List<Vector3> Points = new List<Vector3>();
-	public List<int> ConnectedTo = new List<int>();
-	public Junction Junction;
+	public List<Vector3> points = new List<Vector3>();
+	public List<int> connectedTo = new List<int>();
+	public Junction junction;
 	
 }

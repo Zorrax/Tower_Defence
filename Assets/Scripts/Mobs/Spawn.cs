@@ -19,7 +19,7 @@ public class Spawn : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		CurrentPath = GameObject.Find ("PathMaker");
-		Paths = CurrentPath.GetComponent<InitPaths>().Paths; // reference
+		Paths = CurrentPath.GetComponent<InitPaths>().paths; // reference
 		state = GameObject.Find ("GameState").GetComponent<State>();
 	}
 	
@@ -39,15 +39,15 @@ public class Spawn : MonoBehaviour {
 										mobpaths.Add (0);
 										bool morepaths = true;
 										while (morepaths) {
-												mobpaths.Add (Paths [mobpaths [index]].ConnectedTo [Random.Range (0, Paths [mobpaths [index]].ConnectedTo.Count)]);
+												mobpaths.Add (Paths [mobpaths [index]].connectedTo [Random.Range (0, Paths [mobpaths [index]].connectedTo.Count)]);
 												index++;
 												if (index == 3) {//state.CurrentJunctionTier){
 														morepaths = false;
 												}
 										}
 										foreach (int y in mobpaths) {
-												for (int i =0; i < Paths[y].Points.Count-1; i++) {
-														waypoints.Add (Paths [y].Points [i]);
+												for (int i =0; i < Paths[y].points.Count-1; i++) {
+														waypoints.Add (Paths [y].points [i]);
 												}
 										} // define the type of mob here 
 										List<Vector3> points =new List<Vector3> (waypoints);

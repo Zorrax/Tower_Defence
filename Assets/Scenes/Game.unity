@@ -456,9 +456,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 100000, guid: 3a7502a201e7df247b0b70c7367f6d44, type: 2}
-  basictower: {fileID: 130614, guid: e62b7a70bf2d5b24ebb86bc0f5aedcf9, type: 2}
-  StartPos: {fileID: 642931811}
-  Seed: 5
+  basicTower: {fileID: 130614, guid: e62b7a70bf2d5b24ebb86bc0f5aedcf9, type: 2}
+  startPos: {fileID: 642931811}
+  seed: 0
 --- !u!4 &572076971
 Transform:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 642931807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 1, z: 8}
+  m_LocalPosition: {x: 8, y: .5, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
