@@ -10,7 +10,7 @@ public class MobData : MonoBehaviour {
 
 	public void SetMobs(List<Vector3> wayp, MobType type){
 		foreach(GameObject a in mobs){
-			a.GetComponent<Mover>().SetWayP(wayp);
+			a.GetComponent<Mover>().SetWaypoints(wayp);
 			a.GetComponent<Healthbar>().SetType(type);
 
 		}

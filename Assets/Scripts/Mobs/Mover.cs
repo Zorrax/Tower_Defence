@@ -2,51 +2,54 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Mover : MonoBehaviour {
+public class Mover : MonoBehaviour
+{
+    private Vector3 direction;
+    private Vector3 moveVector;
+    private float moveSpeed = 1f;
+    private float minDistance = 0.1f;
+    private bool waypointIsSet = false;
 
-	private Vector3 Direction;
-	private Vector3 MoveVector;
-	public float MoveSpeed= 2f;
-	private float MinDistance=0.1f;
-	private bool waypointisset = false;
+    private Vector3 currentWaypoint;
+    private int currentIndex;
+    private List<Vector3> waypoints = new List<Vector3>();
 
+    public void SetWaypoints(List<Vector3> _waypoints)
+    {
+        waypoints = _waypoints;
+        currentWaypoint = waypoints[0];
+        currentIndex = 0;
+        waypointIsSet = true;
+    }
 
-	public Vector3 CurrentWaypoint;
-	public int CurrentIndex;
-	public List<Vector3> waypoints = new List<Vector3>();
+    void Update()
+    {
+        if (GameObject.Find("GameState").GetComponent<State>().Running && waypointIsSet)
+        {
+            UpdatePosition();
+            CheckPosition();
+        }
+    }
 
+    private void UpdatePosition()
+    {
+        direction = currentWaypoint - transform.position;
+        moveVector = direction.normalized * moveSpeed * Time.deltaTime;
+        transform.position += moveVector;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 4 * Time.deltaTime);
+    }
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	public void SetWayP(List<Vector3> wayp){
-		waypoints = wayp;
-		CurrentWaypoint = waypoints[0];
-		CurrentIndex = 0;
-		waypointisset = true;
-	}
-
-	// Update is called once per frame
-	void Update () {
-				if (GameObject.Find ("GameState").GetComponent<State> ().Running && waypointisset) {
-
-						Direction = CurrentWaypoint - transform.position;
-						MoveVector = Direction.normalized * MoveSpeed * Time.deltaTime;
-						transform.position += MoveVector;
-						transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (Direction), 4 * Time.deltaTime);
-
-		
-						if (Vector3.Distance (CurrentWaypoint, transform.position) < MinDistance) {
-								++CurrentIndex;
-								if (CurrentIndex > waypoints.Count - 1) {
-
-										Destroy (gameObject);
-										return;
-								}
-								CurrentWaypoint = waypoints [CurrentIndex];
-
-						}
-				}
-		}
+    private void CheckPosition()
+    {
+        if (Vector3.Distance(currentWaypoint, transform.position) < minDistance)
+        {
+            ++currentIndex;
+            if (currentIndex > waypoints.Count - 1)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            currentWaypoint = waypoints[currentIndex];
+        }
+    }
 }
