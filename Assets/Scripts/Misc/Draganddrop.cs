@@ -51,9 +51,10 @@ public class Draganddrop : MonoBehaviour {
 			point = camRay.GetPoint(hitDist); // define the point on movePlane
 			offset= startPos-point; 
 		}
-        lastSphere = curSphere;
+        
         if(isPlaced)
         {
+            lastSphere = curSphere;
             lastTower = lastSphere.transform.parent.gameObject;
         }
         
