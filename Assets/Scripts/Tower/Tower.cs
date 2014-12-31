@@ -15,7 +15,7 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
-        for (int a = 0; a < 6; a++)
+        for (int a = 0; a < 5; a++)
         {
             AugList.Add(null);
         }

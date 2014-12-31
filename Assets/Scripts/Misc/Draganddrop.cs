@@ -12,7 +12,7 @@ public class Draganddrop : MonoBehaviour {
 	Vector3 startPos, point, corPoint, triggerPos, offset;
 	public GameObject curSphere, lastSphere;
 	public GameObject mousedTower;
-	public GameObject tower;
+	public GameObject tower, lastTower;
 	bool isPlaced=false;
 
 	void Start(){
@@ -20,6 +20,7 @@ public class Draganddrop : MonoBehaviour {
 		lastSphere = new GameObject();
 		lastSphere.AddComponent<ID> ();
 		lastSphere.GetComponent<ID> ().sphereID = 0;
+        lastTower = null;
 	}
 
 	void OnTriggerEnter(Collider other){
@@ -31,7 +32,7 @@ public class Draganddrop : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 		isPlaced = false;
-		lastSphere = curSphere;
+		
 	}
 
 
@@ -50,6 +51,12 @@ public class Draganddrop : MonoBehaviour {
 			point = camRay.GetPoint(hitDist); // define the point on movePlane
 			offset= startPos-point; 
 		}
+        lastSphere = curSphere;
+        if(isPlaced)
+        {
+            lastTower = lastSphere.transform.parent.gameObject;
+        }
+        
 	
 	}
 
@@ -64,7 +71,11 @@ public class Draganddrop : MonoBehaviour {
 			if(tower.GetComponent<Tower>().AugList[lastSphere.GetComponent<ID>().sphereID]==tower.GetComponent<Tower>().AugList[curSphere.GetComponent<ID>().sphereID]){
 				tooltip.enabled=false;
 			}
-			tower.GetComponent<Tower>().AugList[lastSphere.GetComponent<ID>().sphereID]=null;
+            if(lastTower != null)
+            {
+                lastTower.GetComponent<Tower>().AugList[lastSphere.GetComponent<ID>().sphereID] = null;
+            }
+            //lastTower.GetComponent<Tower>().AugList[lastSphere.GetComponent<ID>().sphereID] = null;
 			tower.GetComponent<Tower>().AugList[curSphere.GetComponent<ID>().sphereID]=gameObject;
 		}
 	}
