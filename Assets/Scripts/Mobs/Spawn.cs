@@ -36,6 +36,7 @@ public class Spawn : MonoBehaviour
         if (GameObject.Find("GameState").GetComponent<State>().Running)
         {
             InstantiationTimer -= Time.deltaTime;
+            
 
             if (InstantiationTimer <= 0)
             {
@@ -69,10 +70,12 @@ public class Spawn : MonoBehaviour
                 state.SpawnCounter++;
 
                 curmobwave = Instantiate(MobWave, StartPos.position, Quaternion.identity) as GameObject;
-                curmobwave.GetComponent<MobData>().SetMobs(points, mobtype);
+                curmobwave.GetComponent<Healthbar>().SetType(mobtype);
+                curmobwave.GetComponent<Mover>().SetWaypoints(points);
 
 
-                InstantiationTimer = 13f;
+                InstantiationTimer = 3f;
+
 
                 waypoints.Clear();
 
