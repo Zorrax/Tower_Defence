@@ -99,7 +99,8 @@ public class Tower : MonoBehaviour
                 {
                     GameObject.Find("GameState").GetComponent<State>().Money += 1;
                     GameObject.Find("Money").GetComponent<Text>().text = "Currency: " + GameObject.Find("GameState").GetComponent<State>().Money;
-                    Destroy(mobList[0]);
+                    Destroy(mobList[0].collider);
+                    Destroy(mobList[0].renderer);
                     mobList.RemoveAt(0);
                 }
             }
