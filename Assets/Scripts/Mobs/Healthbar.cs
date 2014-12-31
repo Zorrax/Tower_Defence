@@ -35,18 +35,26 @@ public class Healthbar : MonoBehaviour
         float fireDamage = Damage.Fire * (1f - me.FireResistance / 100f);
         float physicalDamage = Damage.Physical * (1f - me.PhysicalResistance / 100f);
 
-        if (me.Health > 0)
-        {
-            fireRatio = fireDamage / me.Health;
-            physicalRatio = physicalDamage / me.Health;
-        }
-
+        float health = me.Health;
 
         me.Health -= fireDamage;
         me.Health -= physicalDamage;
 
-        me.FireResistance -= Damage.FirePen - fireRatio * 10;
-        me.PhysicalResistance -= Damage.PhysicalPen - physicalRatio * 10;
+        if (me.Health > 0)
+        {
+            fireRatio = fireDamage / health;
+            physicalRatio = physicalDamage / health;
+
+            me.FireResistance -= Damage.FirePen - fireRatio * 10;
+            me.PhysicalResistance -= Damage.PhysicalPen - physicalRatio * 10;
+
+        }
+        else
+        {
+            me.FireResistance =0;
+            me.PhysicalResistance = 0;
+
+        }
 
         if (me.Health < 0)
             me.Health = 0;

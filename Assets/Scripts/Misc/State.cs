@@ -3,7 +3,7 @@ using System.Collections;
 
 public class State : MonoBehaviour {
 
-	public int SpawnCounter = 0;
+	public float SpawnCounter = 0;
 	public int CurrentJunctionTier=4;
 	public bool Running=true;
 	public int Money=0;

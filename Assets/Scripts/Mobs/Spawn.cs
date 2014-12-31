@@ -62,9 +62,9 @@ public class Spawn : MonoBehaviour
                 } // define the type of mob here 
                 List<Vector3> points = new List<Vector3>(waypoints);
                 MobType mobtype = new MobType();
-                mobtype.Health = 100f + Mathf.Pow(state.SpawnCounter, 1.1f);
-                mobtype.PhysicalResistance = 5f + Random.Range(0f, (state.SpawnCounter / 1000) * 95);
-                mobtype.FireResistance = 5f + Random.Range(0f, (state.SpawnCounter / 1000) * 95);
+                mobtype.Health = 100f + Mathf.Pow(state.SpawnCounter, 1.5f);
+                mobtype.PhysicalResistance = 5f + Random.Range(0f, (state.SpawnCounter / 100f) * 95f);
+                mobtype.FireResistance = 5f + Random.Range(0f, (state.SpawnCounter / 100f) * 95f);
 
                 state.SpawnCounter++;
 
