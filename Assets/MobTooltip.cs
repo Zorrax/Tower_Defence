@@ -13,7 +13,7 @@ public class MobTooltip : MonoBehaviour
     void Update()
     {
         healtBar.fillAmount = mob.GetComponent<Healthbar>().healthBarLength;
-        physicalResistance.fillAmount = mob.GetComponent<Healthbar>().me.PhysicalResistance;
+        physicalResistance.fillAmount = mob.GetComponent<Healthbar>().me.PhysicalResistance/100f;
     }
 
 }

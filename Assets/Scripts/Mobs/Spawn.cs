@@ -10,11 +10,18 @@ public class Spawn : MonoBehaviour
 
 
     private GameObject curmobwave;
-    private float InstantiationTimer = 1f;
+    private float InstantiationTimer = 0f;
+    private float groupInstantiationTimer = -2f;
     private GameObject CurrentPath;
     private State state;
     private List<Path> Paths = new List<Path>();
+
     private List<Vector3> waypoints = new List<Vector3>();
+    private List<Vector3> points;
+    private MobType mobtype;
+    private float AP, APMob;
+    private float mobsInWave;
+
     float randnumb;
 
     // Use this for initialization
@@ -36,11 +43,10 @@ public class Spawn : MonoBehaviour
         if (GameObject.Find("GameState").GetComponent<State>().Running)
         {
             InstantiationTimer -= Time.deltaTime;
-            
+            groupInstantiationTimer -= Time.deltaTime;
 
             if (InstantiationTimer <= 0)
             {
-
                 List<int> mobpaths = new List<int>();
                 int index = 0;
                 mobpaths.Add(0);
@@ -61,25 +67,29 @@ public class Spawn : MonoBehaviour
                         waypoints.Add(Paths[y].points[i]);
                     }
                 } // define the type of mob here 
-                List<Vector3> points = new List<Vector3>(waypoints);
-                MobType mobtype = new MobType();
-                mobtype.Health = 100f + Mathf.Pow(state.SpawnCounter, 1.5f);
+                points = new List<Vector3>(waypoints);
+                waypoints.Clear();
+                mobtype = new MobType();
+                AP = Mathf.Pow(state.SpawnCounter, 1.5f);
+                mobsInWave = Random.Range(3,8);
+                APMob = AP / mobsInWave;
+                mobtype.Health = 100f;
                 mobtype.PhysicalResistance = 5f + Random.Range(0f, (state.SpawnCounter / 100f) * 95f);
                 mobtype.FireResistance = 5f + Random.Range(0f, (state.SpawnCounter / 100f) * 95f);
 
                 state.SpawnCounter++;
 
+                InstantiationTimer = 2.1f*mobsInWave;
+                groupInstantiationTimer = 4f;
+            }
+
+            if (groupInstantiationTimer <= 0)
+            {
                 curmobwave = Instantiate(MobWave, StartPos.position, Quaternion.identity) as GameObject;
                 curmobwave.GetComponent<Healthbar>().SetType(mobtype);
                 curmobwave.GetComponent<Mover>().SetWaypoints(points);
 
-
-                InstantiationTimer = 3f;
-
-
-                waypoints.Clear();
-
-
+                groupInstantiationTimer = 2f;
             }
         }
     }
