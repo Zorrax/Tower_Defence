@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartPos: {fileID: 642931811}
-  MobWave: {fileID: 181672, guid: b0142ca7232ffbd4284d539d5eb407be, type: 2}
+  MobWave: {fileID: 102198, guid: 774d525b38c3d7746b5e4ca1c23569d0, type: 2}
 --- !u!4 &698944634
 Transform:
   m_ObjectHideFlags: 0

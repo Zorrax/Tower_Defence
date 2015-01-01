@@ -18,7 +18,7 @@ public class MobData : MonoBehaviour {
 
 	void Update(){
 		foreach(GameObject b in mobs){
-			if(b!=null){
+			if(b.renderer!=null){
 				isfilled=true;
 				break;
 			}else{
