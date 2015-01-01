@@ -72,19 +72,24 @@ public class Spawn : MonoBehaviour
 
                 mobtype = new MobType();
                 AP = Mathf.Pow(state.SpawnCounter, 1.5f);
-                mobsInWave = Random.Range(3,8);
-                float randnumb = Random.Range(1,4);
-                if(randnumb==1){
+                mobsInWave = Random.Range(3, 8);
+                float randnumb = Random.Range(1, 4);
+                if (randnumb == 1)
+                {
                     // set primary resistance
                 }
                 APMob = AP / mobsInWave;
-                mobtype.Health = 100f + APMob*3;
-                mobtype.PhysicalResistance = 5f +APMob/10f;
-                mobtype.FireResistance = 5f + APMob/10f;
+                mobtype.Health = 100f + APMob * 3;
+                mobtype.PhysicalResistance = 5f + APMob / 10f;
+                mobtype.resistance1 = 5f + APMob / 9f;
+                mobtype.resistance2 = 5f + APMob / 7f;
+                mobtype.resistance3 = 5f + APMob / 15f;
+                mobtype.resistance4 = 5f + APMob / 20f;
+
 
                 state.SpawnCounter++;
 
-                InstantiationTimer = 2.1f*mobsInWave;
+                InstantiationTimer = 2.1f * mobsInWave;
                 groupInstantiationTimer = 4f;
             }
 

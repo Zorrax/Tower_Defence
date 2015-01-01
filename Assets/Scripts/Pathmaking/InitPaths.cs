@@ -106,7 +106,7 @@ public class InitPaths : MonoBehaviour
                 bezierZ = bezierZ + (Factorial(n) / (Factorial(i) * Factorial(n - i))) * Mathf.Pow((1 - T), (n - i)) * Mathf.Pow(T, i) * junctionsInPath[i].z;
             }
             paths[indexPath].points.Add(new Vector3(bezierX, 0.5f, bezierZ));
-            Instantiate(cube, paths[indexPath].points[u], Quaternion.identity);
+            //Instantiate(cube, paths[indexPath].points[u], Quaternion.identity);
         }
     }
 
@@ -134,7 +134,7 @@ public class InitPaths : MonoBehaviour
         {
             junctionTier[indexJunctionTier].junction.Add(new Junction());
             junctionTier[indexJunctionTier].junction[indexJunction].point = calculatedPoint;
-            Instantiate(cube, calculatedPoint, Quaternion.identity);
+           // Instantiate(cube, calculatedPoint, Quaternion.identity);
             indexJunction++;
         }
     }

@@ -32,7 +32,7 @@ public class Healthbar : MonoBehaviour
     public void AddjustCurrentHealth(DamageClass Damage)
     {
         float fireRatio=0, physicalRatio=0;
-        float fireDamage = Damage.Fire * (1f - me.FireResistance / 100f);
+        float fireDamage = Damage.Fire * (1f - me.resistance1 / 100f);
         float physicalDamage = Damage.Physical * (1f - me.PhysicalResistance / 100f);
 
         float health = me.Health;
@@ -45,13 +45,13 @@ public class Healthbar : MonoBehaviour
             fireRatio = fireDamage / health;
             physicalRatio = physicalDamage / health;
 
-            me.FireResistance -= Damage.FirePen - fireRatio * 10;
+            me.resistance1 -= Damage.FirePen - fireRatio * 10;
             me.PhysicalResistance -= Damage.PhysicalPen - physicalRatio * 10;
 
         }
         else
         {
-            me.FireResistance =0;
+            me.resistance1 =0;
             me.PhysicalResistance = 0;
 
         }
