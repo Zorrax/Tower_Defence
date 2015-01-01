@@ -8,7 +8,7 @@ public class Aug : MonoBehaviour {
 	public int augID=0;
 	public string type;
 	public float specialchance=0;
-
+    private Aug aug;
 
 	public void Updatetooltip(){
 		tooltip.text = "Type: "+char.ToUpper(type[0]) + type.Substring(1)+"\nLevel: " + level+"\nSpecial: "+specialchance;
@@ -20,6 +20,8 @@ public class Aug : MonoBehaviour {
 			level++;
 		}
 			Updatetooltip ();
+            //Debug.Log(tooltip.transform.parent.GetComponent<Canvas>().active);
 	}
+
 
 }

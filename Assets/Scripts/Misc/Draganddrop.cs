@@ -17,6 +17,7 @@ public class Draganddrop : MonoBehaviour {
 
 	void Start(){
 		tooltip.enabled = false;
+        GetComponent<Aug> ().Updatetooltip ();
 		lastSphere = new GameObject();
 		lastSphere.AddComponent<ID> ();
 		lastSphere.GetComponent<ID> ().sphereID = 0;
@@ -38,10 +39,13 @@ public class Draganddrop : MonoBehaviour {
 
 	void OnMouseDown ()
 	{
-		tooltip.enabled = !tooltip.enabled;
-		if(tooltip.enabled==true){
-			GetComponent<Aug> ().Updatetooltip ();
-		}
+        if (isPlaced)
+        {
+            tooltip.enabled = !tooltip.enabled;
+
+        }
+        
+
 		startPos = transform.position; // save position in case draged to invalid place
 		movePlane = new Plane(-Camera.main.transform.forward,transform.position); // find a parallel plane to the camera based on obj start pos;
 	
@@ -63,14 +67,16 @@ public class Draganddrop : MonoBehaviour {
 
 	void OnMouseUp ()
 	{
+
+
 		if (!isPlaced) {
 			transform.position = startPos;
-			tooltip.enabled=true;
+			
 		} else if(isPlaced) {
 			transform.position = triggerPos;
 			tower=mousedTower;
 			if(tower.GetComponent<Tower>().AugList[lastSphere.GetComponent<ID>().sphereID]==tower.GetComponent<Tower>().AugList[curSphere.GetComponent<ID>().sphereID]){
-				tooltip.enabled=false;
+
 			}
             if(lastTower != null)
             {
@@ -83,7 +89,8 @@ public class Draganddrop : MonoBehaviour {
 	
 	void OnMouseDrag ()
 	{	
-	
+        if(!isPlaced)
+        { tooltip.enabled = false;  }
 		camRay = Camera.main.ScreenPointToRay(Input.mousePosition); // shoot a ray at the obj from mouse screen point
 
 		if (movePlane.Raycast(camRay,out hitDist)){ // finde the collision on movePlane
@@ -94,5 +101,12 @@ public class Draganddrop : MonoBehaviour {
 			corPoint.z=camRay.origin.z+(point.z-camRay.origin.z)*t;
 			transform.position= corPoint+offset; 
 		}
+        
 	}
+
+    void OnMouseClick()
+    {
+
+
+    }
 }
