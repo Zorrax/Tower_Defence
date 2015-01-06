@@ -22,7 +22,7 @@ public class InitPaths : MonoBehaviour
         Random.seed = seed;
         junctionTier.Add(new JunctionTier());
         junctionTier[indexJunctionTier].junction.Add(new Junction());
-        junctionTier[indexJunctionTier].junction[0].point = startPos.position;
+        junctionTier[indexJunctionTier].junction[0].point = new Vector3(startPos.position.x-0.1f, startPos.position.y, startPos.position.z-0.1f);
 
         for (int quantityJunctionTier = 0; quantityJunctionTier < 5; quantityJunctionTier++)
         {
