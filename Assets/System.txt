@@ -1,0 +1,75 @@
+Systemet for damage og special evner skrevet på en (forhåbenlig) overskuelig måde ^^
+
+4 typer af damage og base physical damage
+
+4 typer resistance(anden reduction) og armor(første reduction), hvilket implicere at type skade vil skade mindre men de har special og mere skade
+
+diminish returns på 4 typer. returns bliver længere baseret på hvad der skal bruges for at gøre det.  
+
+Augs:
+
+poison 
+
+fire
+
+water
+
+ice
+
+lightning
+
+rock
+
+base damage
+
+physical
+
+light 
+
+dark
+
+
+effeckter:
+armor pen
+
+type pen
+
+piercing armor uden penetration af den 
+
+stun
+
+slow 
+
+wet
+
+freeze (water ice) 
+
+shatter ( water ice)
+
+disoriented
+
+loss of track
+
+on fire
+
+poisoned
+
+knockback
+
+electrocute (lightning water)
+
+shock
+
+chain lightning (lightning)
+
+lava (rock fire :D )
+
+explosion (poision fire)
+
+
+
+
+
+
+
+ 

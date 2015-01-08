@@ -71,21 +71,37 @@ public class Spawn : MonoBehaviour
                 waypoints.Clear();
 
                 mobtype = new MobType();
-                AP = Mathf.Pow(state.SpawnCounter, 1.5f);
-                mobsInWave = Random.Range(3, 8);
+                AP = Mathf.Pow(state.SpawnCounter+2, 1.5f);
+                mobsInWave = Random.Range(4, 10);
+                
+                APMob = AP / mobsInWave;
+                mobtype.Health = 100f + APMob * 20;
+                mobtype.PhysicalResistance = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
+                mobtype.resistance1 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
+                mobtype.resistance2 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
+                mobtype.resistance3 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f); 
+                mobtype.resistance4 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
+
+               
+
                 float randnumb = Random.Range(1, 4);
                 if (randnumb == 1)
                 {
-                    // set primary resistance
+                    mobtype.resistance1 = mobtype.resistance1 + Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance1);
                 }
-                APMob = AP / mobsInWave;
-                mobtype.Health = 100f + APMob * 3;
-                mobtype.PhysicalResistance = 5f + APMob / 10f;
-                mobtype.resistance1 = 5f + APMob / 9f;
-                mobtype.resistance2 = 5f + APMob / 7f;
-                mobtype.resistance3 = 5f + APMob / 15f;
-                mobtype.resistance4 = 5f + APMob / 20f;
-
+                if (randnumb == 2)
+                {
+                    mobtype.resistance2 = mobtype.resistance2 + Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance2);
+                }
+                if (randnumb == 3)
+                {
+                    mobtype.resistance3 = mobtype.resistance3 + Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance3);
+                }
+                if (randnumb == 4)
+                {
+                    mobtype.resistance4 = mobtype.resistance4 + Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance4);
+                }
+                
 
                 state.SpawnCounter++;
 

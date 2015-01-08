@@ -7,7 +7,7 @@ public class Healthbar : MonoBehaviour
 
     public float StartHealth;
     public MobType me;
-    
+
     public float healthBarLength;
 
     // Use this for initialization
@@ -31,33 +31,26 @@ public class Healthbar : MonoBehaviour
 
     public void AddjustCurrentHealth(DamageClass Damage)
     {
-        float fireRatio=0, physicalRatio=0;
-        float fireDamage = Damage.Fire * (1f - me.resistance1 / 100f);
-        float physicalDamage = Damage.Physical * (1f - me.PhysicalResistance / 100f);
 
-        float health = me.Health;
-
-        me.Health -= fireDamage;
-        me.Health -= physicalDamage;
+        me.Health -= Damage.Fire * (1f - me.resistance1 / 100f);
+        me.Health -= Damage.Physical * (1f - me.PhysicalResistance / 100f);
 
         if (me.Health > 0)
         {
-            fireRatio = fireDamage / health;
-            physicalRatio = physicalDamage / health;
-
-            me.resistance1 -= Damage.FirePen - fireRatio * 10;
-            me.PhysicalResistance -= Damage.PhysicalPen - physicalRatio * 10;
+            me.resistance1 -= Damage.FirePen;
+            me.PhysicalResistance -= Damage.PhysicalPen;
 
         }
         else
         {
-            me.resistance1 =0;
+            me.resistance1 = 0;
+            me.resistance2 = 0;
+            me.resistance3 = 0;
+            me.resistance4 = 0;
             me.PhysicalResistance = 0;
+            me.Health = 0;
 
         }
-
-        if (me.Health < 0)
-            me.Health = 0;
 
         if (me.Health > StartHealth)
             me.Health = StartHealth;
