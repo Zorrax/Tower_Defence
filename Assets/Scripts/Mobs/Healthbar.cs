@@ -7,38 +7,33 @@ public class Healthbar : MonoBehaviour
 
     public float StartHealth;
     public MobType me;
-
     public float healthBarLength;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void SetType(MobType type)
     {
         me = new MobType(type);
-        StartHealth = me.Health;
-        healthBarLength = (me.Health / StartHealth);
+        StartHealth = me.health;
+        healthBarLength = (me.health / StartHealth);
     }
 
 
     public void AddjustCurrentHealth(DamageClass Damage)
     {
 
-        me.Health -= Damage.Fire * (1f - me.resistance1 / 100f);
-        me.Health -= Damage.Physical * (1f - me.PhysicalResistance / 100f);
+        me.health -= Damage.Physical * (1f - me.physicalResistance / 100f);
+        me.health -= Damage.type1 * (1f - me.physicalResistance / 100f) * (1f - me.resistance1 / 100f);
+        me.health -= Damage.type2 * (1f - me.physicalResistance / 100f) * (1f - me.resistance2 / 100f);
+        me.health -= Damage.type3 * (1f - me.physicalResistance / 100f) * (1f - me.resistance3 / 100f);
+        me.health -= Damage.type4 * (1f - me.physicalResistance / 100f) * (1f - me.resistance4 / 100f);
+       
 
-        if (me.Health > 0)
+        if (me.health > 0)
         {
-            me.resistance1 -= Damage.FirePen;
-            me.PhysicalResistance -= Damage.PhysicalPen;
+            me.resistance1 -= Damage.type1Pen;
+            me.resistance2 -= Damage.type2Pen;
+            me.resistance3 -= Damage.type3Pen;
+            me.resistance4 -= Damage.type4Pen;
+            me.physicalResistance -= Damage.PhysicalPen;
 
         }
         else
@@ -47,18 +42,18 @@ public class Healthbar : MonoBehaviour
             me.resistance2 = 0;
             me.resistance3 = 0;
             me.resistance4 = 0;
-            me.PhysicalResistance = 0;
-            me.Health = 0;
+            me.physicalResistance = 0;
+            me.health = 0;
 
         }
 
-        if (me.Health > StartHealth)
-            me.Health = StartHealth;
+        if (me.health > StartHealth)
+            me.health = StartHealth;
 
         if (StartHealth < 1)
             StartHealth = 1;
 
-        healthBarLength = (me.Health / StartHealth);
+        healthBarLength = (me.health / StartHealth);
     }
 
 }

@@ -19,8 +19,7 @@ public class Aug : MonoBehaviour {
 			GameObject.Find("Money").GetComponent<Text>().text="Currency: "+GameObject.Find("GameState").GetComponent<State>().Money;
 			level++;
 		}
-			Updatetooltip ();
-            //Debug.Log(tooltip.transform.parent.GetComponent<Canvas>().active);
+		Updatetooltip ();
 	}
 
 

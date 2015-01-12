@@ -29,7 +29,7 @@ public class Tower : MonoBehaviour
 
 
         target.GetComponent<Healthbar>().AddjustCurrentHealth(Damage);
-        if (target.GetComponent<Healthbar>().me.Health <= 0f)
+        if (target.GetComponent<Healthbar>().me.health <= 0f)
         {
             destroyGameObject = true;
         }
@@ -77,9 +77,9 @@ public class Tower : MonoBehaviour
                 {
                     Damage.Physical = Damage.Physical + 20 * me.level;
                 }
-                if (me.type == "fire")
+                if (me.type == "fire") // && andre typer der der passer ind på type 1
                 {
-                    Damage.Fire = Damage.Fire + 20 * me.level; // håndtere special chance og penetration også
+                    Damage.type1 = Damage.type1 + 20 * me.level; // håndtere special chance og penetration også
                 }
 
             }

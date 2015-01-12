@@ -6,6 +6,8 @@ Systemet for damage og special evner skrevet på en (forhåbenlig) overskuelig måd
 
 diminish returns på 4 typer. returns bliver længere baseret på hvad der skal bruges for at gøre det.  
 
+accuracy nemmere at ramme et stort mob
+
 Augs:
 
 poison 

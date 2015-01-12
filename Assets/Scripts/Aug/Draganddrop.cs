@@ -33,7 +33,6 @@ public class Draganddrop : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 		isPlaced = false;
-		
 	}
 
 
@@ -44,7 +43,6 @@ public class Draganddrop : MonoBehaviour {
             tooltip.enabled = !tooltip.enabled;
 
         }
-        
 
 		startPos = transform.position; // save position in case draged to invalid place
 		movePlane = new Plane(-Camera.main.transform.forward,transform.position); // find a parallel plane to the camera based on obj start pos;
@@ -61,13 +59,10 @@ public class Draganddrop : MonoBehaviour {
             lastSphere = curSphere;
             lastTower = lastSphere.transform.parent.gameObject;
         }
-        
-	
 	}
 
 	void OnMouseUp ()
 	{
-
 
 		if (!isPlaced) {
 			transform.position = startPos;
@@ -104,9 +99,4 @@ public class Draganddrop : MonoBehaviour {
         
 	}
 
-    void OnMouseClick()
-    {
-
-
-    }
 }
