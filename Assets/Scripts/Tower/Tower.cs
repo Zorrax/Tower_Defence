@@ -102,8 +102,6 @@ public class Tower : MonoBehaviour
                     if (Random.value > 0.2)
                     {
                         Random.seed = savedSeed;
-                        GameObject.Find("GameState").GetComponent<State>().Money += 1;
-                        GameObject.Find("Money").GetComponent<Text>().text = "Currency: " + GameObject.Find("GameState").GetComponent<State>().Money;
                         Destroy(mobList[0]);
                         mobList.RemoveAt(0);
                     }

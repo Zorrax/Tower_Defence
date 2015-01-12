@@ -44,6 +44,8 @@ public class Healthbar : MonoBehaviour
             me.resistance4 = 0;
             me.physicalResistance = 0;
             me.health = 0;
+            GameObject.Find("GameState").GetComponent<State>().Money += me.value;
+            GameObject.Find("Money").GetComponent<Text>().text = "Currency: " + GameObject.Find("GameState").GetComponent<State>().Money;
 
         }
 

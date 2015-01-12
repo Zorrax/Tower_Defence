@@ -75,14 +75,15 @@ public class Spawn : MonoBehaviour
                 mobsInWave = Random.Range(4, 10);
                 
                 APMob = AP / mobsInWave;
+                string text = "APMob: " + APMob; 
+                Debug.Log(text);
                 mobtype.health = 100f + APMob * 20;
                 mobtype.physicalResistance = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
                 mobtype.resistance1 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
                 mobtype.resistance2 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
                 mobtype.resistance3 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f); 
                 mobtype.resistance4 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
-
-               
+                mobtype.value = Mathf.FloorToInt(APMob)+1;
 
                 float randnumb = Random.Range(1, 4);
                 if (randnumb == 1)

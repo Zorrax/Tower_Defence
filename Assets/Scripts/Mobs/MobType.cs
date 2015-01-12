@@ -9,6 +9,7 @@ public class MobType  {
     public float resistance2;
     public float resistance3;
     public float resistance4;
+    public int value;
     public float size;
 
 	public MobType(){
@@ -21,5 +22,6 @@ public class MobType  {
         resistance2 = type.resistance2;
         resistance3 = type.resistance3;
         resistance4 = type.resistance4;
+        value = type.value;
 	}
 }

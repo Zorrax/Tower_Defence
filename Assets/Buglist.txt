@@ -1,0 +1,1 @@
+*mobs får healtbarlenght 0 i nogle tilfælde unden at have mistet liv. køb fire til lvl 6 og mob ved money 15-17 har problemet og kan reproduceres hver gang
