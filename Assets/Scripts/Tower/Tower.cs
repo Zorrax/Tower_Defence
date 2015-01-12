@@ -97,10 +97,16 @@ public class Tower : MonoBehaviour
             {
                 if (fireAtGameObject(mobList[0]))
                 {
-                    GameObject.Find("GameState").GetComponent<State>().Money += 1;
-                    GameObject.Find("Money").GetComponent<Text>().text = "Currency: " + GameObject.Find("GameState").GetComponent<State>().Money;
-                    Destroy(mobList[0]);
-                    mobList.RemoveAt(0);
+                    // check if you hit it
+                    int savedSeed = Random.seed;
+                    if (Random.value > 0.2)
+                    {
+                        Random.seed = savedSeed;
+                        GameObject.Find("GameState").GetComponent<State>().Money += 1;
+                        GameObject.Find("Money").GetComponent<Text>().text = "Currency: " + GameObject.Find("GameState").GetComponent<State>().Money;
+                        Destroy(mobList[0]);
+                        mobList.RemoveAt(0);
+                    }
                 }
             }
             firetime = fireRate;
