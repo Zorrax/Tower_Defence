@@ -77,30 +77,30 @@ public class Spawn : MonoBehaviour
                 APMob = AP / mobsInWave;
                 string text = "APMob: " + APMob; 
                 Debug.Log(text);
-                mobtype.health = 100f + APMob * 20;
-                mobtype.physicalResistance = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
-                mobtype.resistance1 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
-                mobtype.resistance2 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
-                mobtype.resistance3 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f); 
-                mobtype.resistance4 = 5f + Random.Range(0f, Mathf.Log10(APMob) * 20f);
+                mobtype.health = 100f + APMob * 20f;
+                mobtype.physicalResistance = 5f + Random.Range(Mathf.Log10(APMob + 1) * 10f, Mathf.Log10(APMob + 1) * 20f);
+                mobtype.resistance1 = 5f + Random.Range(Mathf.Log10(APMob + 1) * 10f, Mathf.Log10(APMob + 1) * 20f);
+                mobtype.resistance2 = 5f + Random.Range(Mathf.Log10(APMob + 1) * 10f, Mathf.Log10(APMob + 1) * 20f);
+                mobtype.resistance3 = 5f + Random.Range(Mathf.Log10(APMob + 1) * 10f, Mathf.Log10(APMob + 1) * 20f);
+                mobtype.resistance4 = 5f + Random.Range(Mathf.Log10(APMob + 1) * 10f, Mathf.Log10(APMob + 1) * 20f);
                 mobtype.value = Mathf.FloorToInt(APMob)+1;
 
                 float randnumb = Random.Range(1, 4);
                 if (randnumb == 1)
                 {
-                    mobtype.resistance1 = mobtype.resistance1 + Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance1);
+                    mobtype.resistance1 = mobtype.resistance1 * 2f;// + Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance1);
                 }
                 if (randnumb == 2)
                 {
-                    mobtype.resistance2 = mobtype.resistance2 + Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance2);
+                    mobtype.resistance2 = mobtype.resistance2 * 2f;//+ Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance2);
                 }
                 if (randnumb == 3)
                 {
-                    mobtype.resistance3 = mobtype.resistance3 + Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance3);
+                    mobtype.resistance3 = mobtype.resistance3 * 2f;// +Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance3);
                 }
                 if (randnumb == 4)
                 {
-                    mobtype.resistance4 = mobtype.resistance4 + Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance4);
+                    mobtype.resistance4 = mobtype.resistance4 * 2f;// +Random.Range(0f, Mathf.Log10(APMob) * 20f - mobtype.resistance4);
                 }
                 
 
