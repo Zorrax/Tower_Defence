@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4663ff91803e3274a888a812b0248914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 192722, guid: 9096f4367a24a204ea55dc9edc5825e3, type: 2}
+  spawn: {fileID: 198502, guid: 9096f4367a24a204ea55dc9edc5825e3, type: 2}
 --- !u!4 &1472622106
 Transform:
   m_ObjectHideFlags: 0

@@ -95,17 +95,18 @@ public class Tower : MonoBehaviour
 
             if (mobList.Count > 0)
             {
-                if (fireAtGameObject(mobList[0]))
+                // check if you hit it
+                int savedSeed = Random.seed;
+                Random.seed = (int)Time.time;
+                if (Random.value > 0.2)
                 {
-                    // check if you hit it
-                    int savedSeed = Random.seed;
-                    if (Random.value > 0.2)
+                    if (fireAtGameObject(mobList[0]))
                     {
-                        Random.seed = savedSeed;
                         Destroy(mobList[0]);
                         mobList.RemoveAt(0);
                     }
                 }
+                Random.seed = savedSeed;
             }
             firetime = fireRate;
         }

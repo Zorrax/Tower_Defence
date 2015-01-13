@@ -49,7 +49,8 @@ public class InitPaths : MonoBehaviour
                     if (!previousJunction.hasTower && previousJunction.bezierPoint.x != 0)
                     {
                         Vector3 spawnpoint = new Vector3(previousJunction.bezierPoint.x, previousJunction.bezierPoint.y + 0.5f, previousJunction.bezierPoint.z);
-                        Instantiate(basicTower, spawnpoint, Quaternion.identity);
+                        GameObject createdTower=Instantiate(basicTower, spawnpoint, Quaternion.identity) as GameObject;
+                        createdTower.hideFlags = HideFlags.HideInHierarchy;
                         previousJunction.hasTower = true;
                     }
                 }
